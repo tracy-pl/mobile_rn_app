@@ -13,7 +13,7 @@ const images: { [key: string]: string } = {
 };
 
 // image preloading
-const imageAssets: Array<Promise<any>> = Object.keys(images).map(key =>
+const imageAssets: Array<Promise<unknown>> = Object.keys(images).map(key =>
   Asset.fromModule(images[key]).downloadAsync(),
 );
 

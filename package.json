@@ -1,6 +1,7 @@
 {
   "name": "tracy_ts",
   "version": "1.0.0",
+  "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "yarn run start --android",
@@ -8,8 +9,8 @@
     "ios": "yarn run start --ios",
     "lint": "eslint --format unix \"**/*.ts\" \"**/*.tsx\"",
     "start": "yarn install && expo start",
-    "validate": "yarn install --frozen-lockfile && yarn run lint && yarn run check-types",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest --forceExit -u"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -44,6 +45,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
+    "@testing-library/jest-native": "^4.0.5",
+    "@testing-library/react-native": "^9.1.0",
+    "@types/jest": "^27.5.1",
     "@types/react": "~17.0.44",
     "@types/react-native": "~0.64.24",
     "@types/redux-logger": "^3.0.9",
@@ -62,6 +66,9 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "expo-cli": "^5.4.3",
     "husky": ">=6",
+    "jest": "^28.1.0",
+    "jest-expo": "^45.0.1",
+    "jest-styled-components": "^7.0.8",
     "lint-staged": ">=10",
     "prettier": "^2.6.2",
     "typescript": "~4.3.5"
@@ -69,13 +76,15 @@
   "resolutions": {
     "@types/react": "~17.0.44"
   },
-  "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "src/**/*.{js,ts,tsx}": [
+      "npm run lint"
+    ]
   }
 }

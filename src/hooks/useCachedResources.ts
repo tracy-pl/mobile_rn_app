@@ -10,13 +10,14 @@ export default function useCachedResources() {
   useEffect(() => {
     (async () => {
       try {
-        SplashScreen.preventAutoHideAsync().catch(console.warn);
+        SplashScreen.preventAutoHideAsync();
         await Promise.all([...imageAssets, fontAssets]);
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.warn(e);
       } finally {
         setLoadingComplete(true);
-        SplashScreen.hideAsync().catch(console.warn);
+        SplashScreen.hideAsync();
       }
     })();
   }, []);
