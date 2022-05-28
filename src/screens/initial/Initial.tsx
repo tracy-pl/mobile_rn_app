@@ -1,6 +1,6 @@
-import { Text, Button } from 'react-native';
+import { Button } from 'react-native';
 
-import { Container } from '~components';
+import { Container, Text } from '~components';
 import { useAppDispatch } from '~redux/hooks';
 import { finishIntroduction } from '~redux/slices';
 

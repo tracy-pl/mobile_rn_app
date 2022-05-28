@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { THEME, ThemeEnum } from '~constants/theme.contants';
 
 interface AppState {
@@ -15,8 +15,8 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setTheme: (state, action: PayloadAction<ThemeEnum>) => {
-      state.theme = action.payload;
+    toggleTheme: state => {
+      state.theme = state.theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
     },
     finishIntroduction: state => {
       state.checkedIn = true;
@@ -24,6 +24,6 @@ const appSlice = createSlice({
   },
 });
 
-export const { setTheme, finishIntroduction } = appSlice.actions;
+export const { toggleTheme, finishIntroduction } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import '~utils/ignore';
-import '~services/firebase';
 
+import { ThemeProvider } from '~components';
 import RootNavigation from '~routes';
 import { store, persistor } from '~redux/store';
 import useCachedResources from '~hooks/useCachedResources';
@@ -20,9 +20,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <RootNavigation />
-        </SafeAreaProvider>
+        <ThemeProvider>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+            <RootNavigation />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   );

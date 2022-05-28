@@ -1,6 +1,4 @@
 import { Asset } from 'expo-asset';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import Logo from '../../assets/images/logo.svg';
 
 const svgs = {
@@ -12,7 +10,6 @@ const images: { [key: string]: string } = {
   logo_lg: require('../../assets/images/logo-lg.png'),
 };
 
-// image preloading
 const imageAssets: Array<Promise<unknown>> = Object.keys(images).map(key =>
   Asset.fromModule(images[key]).downloadAsync(),
 );

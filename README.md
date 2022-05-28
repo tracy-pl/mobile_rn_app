@@ -4,10 +4,10 @@
 
 ### How to run locally
 Install Node v16.14.0 (This repo uses a .nvm config, so if you're using [nvm](https://github.com/nvm-sh/nvm), 
-you can run `nvm install` and/or `nvm use` to install the latest long-term support version of node).
+you can run `yarn install` and/or `nvm use` to install the latest long-term support version of node).
 
 1. To install dependencies run `yarn install`
-2. To start the app run `npm start`. The demo app will run on [http://localhost:19002/](http://localhost:19002/)
+2. To start the app run `yarn start`. The demo app will run on [http://localhost:19002/](http://localhost:19002/)
 
 ### Directory Structure
         .
