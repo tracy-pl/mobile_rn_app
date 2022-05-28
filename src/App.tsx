@@ -9,8 +9,8 @@ import '~utils/ignore';
 
 import { ThemeProvider } from '~components';
 import RootNavigation from '~routes';
-import { store, persistor } from '~redux/store';
-import useCachedResources from '~hooks/useCachedResources';
+import { store, persistor } from '~redux';
+import { useCachedResources } from '~utils/hooks';
 
 const App = () => {
   const isLoadingComplete = useCachedResources();

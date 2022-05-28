@@ -1,8 +1,17 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
-import { appReducer, userReducer } from './slices';
-import { defaultMiddlewareConfig, persistConfig } from '~configs/redux.config';
+
+import { appReducer, userReducer } from './modules';
+
+const defaultMiddlewareConfig = { serializableCheck: false };
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage: AsyncStorage,
+};
 
 const rootReducer = combineReducers({
   app: appReducer,

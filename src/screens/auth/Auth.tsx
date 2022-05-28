@@ -2,8 +2,7 @@ import { useCallback } from 'react';
 import { Button, TouchableNativeFeedback } from 'react-native';
 
 import { Container, Text } from '~components';
-import { useAppDispatch } from '~redux/hooks';
-import { toggleTheme } from '~redux/slices';
+import { toggleTheme, useAppDispatch } from '~redux';
 
 const AuthScreen = () => {
   const dispatch = useAppDispatch();

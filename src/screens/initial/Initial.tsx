@@ -1,8 +1,7 @@
 import { Button } from 'react-native';
 
 import { Container, Text } from '~components';
-import { useAppDispatch } from '~redux/hooks';
-import { finishIntroduction } from '~redux/slices';
+import { useAppDispatch, finishIntroduction } from '~redux';
 
 const InitialScreen = () => {
   const dispatch = useAppDispatch();
