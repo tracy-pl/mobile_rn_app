@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { fontAssets } from '~theme/fonts';
-import { imageAssets } from '~theme/images';
+import { fontAssets } from '~constants/theme/fonts';
+import { imageAssets } from '~constants/theme/images';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);

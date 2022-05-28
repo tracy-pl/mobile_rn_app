@@ -3,9 +3,8 @@ import { useColorScheme } from 'react-native';
 import { ThemeProvider as SCThemeProvider } from 'styled-components/native';
 
 import { useAppSelector } from '~redux/hooks';
-import { getTheme } from '~redux/slices';
-import theme from '~theme';
-import { COLOR_SCHEMES, THEME } from '~constants/theme.contants';
+import { getTheme } from '~redux/modules';
+import theme, { COLOR_SCHEMES, THEME } from '~constants/theme';
 
 interface ThemeProviderProps {
   children: React.ReactNode;

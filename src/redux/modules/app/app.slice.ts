@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { THEME, ThemeEnum } from '~constants/theme.contants';
+import { THEME, ThemeEnum } from '~constants/theme';
 
 interface AppState {
   theme: ThemeEnum;
-  checkedIn: boolean;
+  checkedIn: boolean; // Finished introduction screens
 }
 
 const initialState: AppState = {
@@ -16,7 +16,7 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: state => {
-      state.theme = state.theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+      state.theme = state.theme !== THEME.DARK ? THEME.DARK : THEME.LIGHT;
     },
     finishIntroduction: state => {
       state.checkedIn = true;
