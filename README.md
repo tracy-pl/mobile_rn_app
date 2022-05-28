@@ -17,11 +17,14 @@ you can run `yarn install` and/or `nvm use` to install the latest long-term supp
         │   ├───images
         ├───src/
         │   ├───components
-        │   ├───configs
-        │   ├───constants
-        │   ├───hooks
-        │   ├───screens
-        │   ├───services
+        │   ├───constants/
+        |   │   ├───theme/
+        |   │   │   ├───colors.ts
+        |   │   │   ├───fontSizes.ts
+        |   │   │   ├───fonts.ts
+        |   │   │   ├───images.ts
+        |   │   │   ├───index.ts
+        |   │   │   └───sizes.ts
         │   ├───redux/
         │   │   ├───hooks/
         │   │   ├───slices/
@@ -31,18 +34,14 @@ you can run `yarn install` and/or `nvm use` to install the latest long-term supp
         │   │   ├───stacks/
         │   │   ├───Routes.tsx
         │   │   └───index.js
-        │   ├───theme/
-        │   │   ├───colors.ts
-        │   │   ├───fontSizes.ts
-        │   │   ├───fonts.ts
-        │   │   ├───images.ts
-        │   │   ├───index.ts
-        │   │   └───sizes.ts
+        │   ├───screens
+        │   ├───services
         │   ├───types/
         │   │   └───models/
-        │   ├───utils
-        │   ├───App.tsx
-        │   └───index.ts
+        │   ├───utils/
+        |   │   ├───hooks
+        │   ├───index.ts
+        │   └───App.tsx
         ├───App.tsx
         .
         .                               # .env, app.config.js, metro.config.js, babel.config.js, package.json, .nvmrc,
