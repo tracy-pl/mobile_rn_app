@@ -8,8 +8,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import '~utils/ignore';
 import '~constants';
 
-import { ThemeProvider } from '~components';
 import RootNavigation from '~routes';
+import { ThemeProvider } from '~components';
 import { store, persistor } from '~redux';
 import { useCachedResources } from '~hooks';
 

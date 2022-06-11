@@ -1,11 +1,9 @@
-import 'fast-text-encoding';
-
 import React, { useCallback, useMemo, useState } from 'react';
 import { Keyboard } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { VStack } from 'native-base';
 
-import { Button, Input, Text } from '~components';
+import { Button, Container, Input, Text } from '~components';
 import { toggleTheme, useAppDispatch } from '~redux';
 import {
   getResolver,
@@ -21,6 +19,9 @@ const ForgetPswScreen: React.FC = () => {
     formState: { errors },
   } = useForm<IForgetPswFormSchema>({
     resolver: getResolver(forgetPasswordSchema),
+    defaultValues: {
+      email: 'test@gmail.com',
+    },
   });
   const dispatch = useAppDispatch();
   // Mock RTK query req loading
@@ -40,30 +41,32 @@ const ForgetPswScreen: React.FC = () => {
   );
 
   return (
-    <VStack justifyItems="center" space={theme.sizes.xSmall}>
-      <Controller
-        name="email"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => {
-          return (
-            <Input
-              onChangeText={onChange}
-              value={value}
-              onBlur={onBlur}
-              placeholder="Your email: "
-            />
-          );
-        }}
-      />
-      <Button
-        onPress={handleSubmit(onSubmit)}
-        isLoading={loading}
-        isDisabled={disabled}
-      >
-        Send
-      </Button>
-      <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
-    </VStack>
+    <Container>
+      <VStack justifyItems="center" space={theme.sizes.xSmall}>
+        <Controller
+          name="email"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => {
+            return (
+              <Input
+                onChangeText={onChange}
+                value={value}
+                onBlur={onBlur}
+                placeholder="Your email: "
+              />
+            );
+          }}
+        />
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          isLoading={loading}
+          isDisabled={disabled}
+        >
+          Send
+        </Button>
+        <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
+      </VStack>
+    </Container>
   );
 };
 
