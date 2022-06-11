@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 
-import { useAuth } from '~utils/hooks';
+import { useAuth } from '~hooks';
 import { Main, Auth } from '~screens';
 
 export default function App() {

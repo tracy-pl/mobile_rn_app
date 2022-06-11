@@ -6,11 +6,12 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import '~utils/ignore';
+import '~constants';
 
 import { ThemeProvider } from '~components';
 import RootNavigation from '~routes';
 import { store, persistor } from '~redux';
-import { useCachedResources } from '~utils/hooks';
+import { useCachedResources } from '~hooks';
 
 const App = () => {
   const isLoadingComplete = useCachedResources();

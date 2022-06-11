@@ -1,4 +1,4 @@
-import colors from '../colors';
+import { colors } from '../colors';
 import { Schema } from './types';
 
 const dark: Schema = {
