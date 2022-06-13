@@ -1,9 +1,10 @@
-import { Container, Text } from '~components';
+import { Container } from '~components';
+import Header from '../../components/Header'
 
 const MainScreen = () => {
   return (
-    <Container>
-      <Text>Main</Text>
+    <Container style={{ marginTop: -40 }}>
+      <Header />
     </Container>
   );
 };
