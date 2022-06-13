@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 
 const MainScreen = () => {
   return (
-    <Container style={{ marginTop: -40 }}>
+    <Container>
       <Header />
     </Container>
   );
