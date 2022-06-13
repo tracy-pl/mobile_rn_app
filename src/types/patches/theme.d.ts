@@ -1,5 +1,5 @@
 import 'styled-components';
-import theme, { Schema } from '~theme';
+import { theme, Schema } from '~theme';
 
 export type ThemeInterface = typeof theme & Schema;
 

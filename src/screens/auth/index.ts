@@ -1,2 +1,2 @@
 export { default as LoginScreen } from './Login';
-export { default as ForgetPswScreen } from './ForgetPsw';
+export { default as ForgotPasswordScreen } from './ForgotPassword';

@@ -1,9 +1,9 @@
-import { Container, Text } from '~components';
+import { Container, Header } from '~components';
 
 const MainScreen = () => {
   return (
     <Container>
-      <Text>Main</Text>
+      <Header />
     </Container>
   );
 };

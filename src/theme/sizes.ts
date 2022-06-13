@@ -1,11 +1,11 @@
 const sizes = {
-  xxxLarge: 20,
-  xxLarge: 16,
-  xLarge: 12,
-  large: 8,
-  middle: 6,
-  small: 4,
-  xSmall: 2,
+  '3xl': 20,
+  '2xl': 16,
+  xl: 12,
+  lg: 8,
+  md: 6,
+  sm: 4,
+  xSm: 2,
 };
 
 export default sizes;
