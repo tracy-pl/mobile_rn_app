@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { navigationRef } from '~services/navigation.service';
 // import { useAppSelector } from '~redux';
@@ -9,10 +10,11 @@ import { ROUTES, STACKS } from '~constants';
 const Stack = createStackNavigator();
 
 const AuthStack = createStackNavigator();
-const RootStack = createStackNavigator();
+const RootStack = createBottomTabNavigator();
 
 const AuthNavigator = () => (
   <AuthStack.Navigator
+    initialRouteName={ROUTES.LOGIN}
     screenOptions={{ headerShown: false, animationEnabled: false }}
   >
     <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
@@ -25,7 +27,8 @@ const AuthNavigator = () => (
 
 const RootNavigator = () => (
   <RootStack.Navigator
-    screenOptions={{ headerShown: false, animationEnabled: false }}
+    initialRouteName={ROUTES.MAIN}
+    screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name={ROUTES.MAIN} component={Main} />
   </RootStack.Navigator>
