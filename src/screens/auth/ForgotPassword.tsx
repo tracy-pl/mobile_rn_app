@@ -26,7 +26,7 @@ const ForgotPasswordScreen: React.FC = () => {
   });
   const dispatch = useAppDispatch();
   // Mock RTK query req loading
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
     [loading, errors?.email?.message],

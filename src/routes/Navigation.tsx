@@ -15,7 +15,7 @@ const RootStack = createBottomTabNavigator();
 const AuthNavigator = () => (
   <AuthStack.Navigator
     initialRouteName={ROUTES.LOGIN}
-    screenOptions={{ headerShown: false, animationEnabled: false }}
+    screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
     <Stack.Screen
@@ -39,9 +39,7 @@ const App = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false, animationEnabled: false }}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* TODO: add loading screen and auth logic */}
         {/* {!isLoggedIn ? ( */}
         <Stack.Screen name="AuthStack" component={AuthNavigator} />
