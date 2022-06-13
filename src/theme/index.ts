@@ -33,6 +33,11 @@ const nativeBaseTheme = extendTheme({
       // },
     },
   },
+  fonts: {
+    heading: 'openSans_regular',
+    body: 'openSans_regular',
+    mono: 'openSans_regular',
+  },
 });
 
 export type ThemeEnum = typeof THEME[keyof typeof THEME];

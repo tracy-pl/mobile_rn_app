@@ -1,15 +1,13 @@
-import 'fast-text-encoding';
-
 import React, { useCallback, useMemo, useState } from 'react';
-import { Keyboard } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import { VStack } from 'native-base';
+import { useForm } from 'react-hook-form';
+import { Center } from 'native-base';
 
-import { Button, Container, Input, Text } from '~components';
+import { AuthContainer, InputField } from './components';
+import { Button, Text } from '~components';
 import { useAppDispatch } from '~redux';
 import { getResolver, ILoginFormSchema, loginSchema } from '~utils/validation';
-import { theme } from '~theme';
 import { NavigationService } from '~services';
+import { ROUTES, STACKS } from '~constants';
 
 const LoginScreen: React.FC = () => {
   const {
@@ -23,67 +21,45 @@ const LoginScreen: React.FC = () => {
       password: '123456789',
     },
   });
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   // Mock RTK query req loading
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
     [loading, errors?.email?.message],
   );
 
-  const onSubmit = useCallback(
-    ({ email, password }: ILoginFormSchema) => {
-      Keyboard.dismiss();
-      // setLoading(true);
-      NavigationService.navigate('Home');
-    },
-    [dispatch],
-  );
-
-  const onForgot = () => NavigationService.navigate('ForgotPassword');
+  // TODO: add real API call
+  const onSubmit = useCallback((body: ILoginFormSchema) => {
+    // eslint-disable-next-line no-console
+    console.log(body);
+    NavigationService.navigate(`${STACKS.ROOT}`);
+  }, []);
 
   return (
-    <Container>
-      <VStack justifyItems="center" space={theme.sizes.xSmall}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => {
-            return (
-              <Input
-                onChangeText={onChange}
-                value={value}
-                onBlur={onBlur}
-                placeholder="Your email: "
-              />
-            );
-          }}
-        />
-        <Controller
-          name="password"
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => {
-            return (
-              <Input
-                onChangeText={onChange}
-                value={value}
-                onBlur={onBlur}
-                placeholder="Your password: "
-              />
-            );
-          }}
-        />
-        <Button
-          onPress={handleSubmit(onSubmit)}
-          isLoading={loading}
-          isDisabled={disabled}
+    <AuthContainer title="Login">
+      <InputField name="email" placeholder="Email Address" control={control} />
+      <InputField name="password" placeholder="Password" control={control} />
+      <Button
+        onPress={handleSubmit(onSubmit)}
+        isLoading={loading}
+        isDisabled={disabled}
+      >
+        Send
+      </Button>
+      <Text>
+        {loading
+          ? 'Loading'
+          : errors?.email?.message || errors?.password?.message}
+      </Text>
+      <Center>
+        <Text
+          onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}
         >
-          Send
-        </Button>
-        <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
-        <Button onPress={onForgot}>Forgot Password</Button>
-      </VStack>
-    </Container>
+          Forgot Password
+        </Text>
+      </Center>
+    </AuthContainer>
   );
 };
 
