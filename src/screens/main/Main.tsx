@@ -1,5 +1,4 @@
-import { Container } from '~components';
-import Header from '../../components/Header'
+import { Container, Header } from '~components';
 
 const MainScreen = () => {
   return (

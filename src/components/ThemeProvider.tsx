@@ -26,15 +26,15 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   return (
-    <NativeBaseProvider
-      config={{ theme: nativeBaseTheme }}
-      colorModeManager={colorModeManager}
+    <SCThemeProvider
+      theme={{
+        ...theme,
+        ...COLOR_SCHEMES[currentScheme],
+      }}
     >
-      <SCThemeProvider
-        theme={{
-          ...theme,
-          ...COLOR_SCHEMES[currentScheme],
-        }}
+      <NativeBaseProvider
+        config={{ theme: nativeBaseTheme }}
+        colorModeManager={colorModeManager}
       >
         <StatusBar
           barStyle={
@@ -42,8 +42,8 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
           }
         />
         {children}
-      </SCThemeProvider>
-    </NativeBaseProvider>
+      </NativeBaseProvider>
+    </SCThemeProvider>
   );
 };
 
