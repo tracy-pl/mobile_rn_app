@@ -1,24 +1,15 @@
-import * as React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { Spinner, HStack } from 'native-base';
+
+import { Container } from '~components';
 
 const LoadingScreen = () => {
   return (
-    <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator size="large" color="#0085FA"/>
-    </View>
+    <Container>
+      <HStack flex={1} justifyContent="center">
+        <Spinner size="lg" />
+      </HStack>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center"
-  },
-  horizontal: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    padding: 10
-  }
-});
 
 export default LoadingScreen;
