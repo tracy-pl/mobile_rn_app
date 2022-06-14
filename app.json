@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tracy_ts",
-    "slug": "tracy_ts",
+    "slug": "mobile-rn-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
