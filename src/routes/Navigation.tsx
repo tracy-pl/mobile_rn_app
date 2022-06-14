@@ -4,7 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { navigationRef } from '~services/navigation.service';
 // import { useAppSelector } from '~redux';
-import { LoginScreen, ForgotPasswordScreen, Main } from '~screens';
+import {
+  LoginScreen,
+  ForgotPasswordScreen,
+  MainScreen,
+  TrackingScreen,
+} from '~screens';
 import { ROUTES, STACKS } from '~constants';
 
 const Stack = createStackNavigator();
@@ -27,10 +32,11 @@ const AuthNavigator = () => (
 
 const RootNavigator = () => (
   <RootStack.Navigator
-    initialRouteName={ROUTES.MAIN}
+    initialRouteName={ROUTES.TRACKING}
     screenOptions={{ headerShown: false }}
   >
-    <Stack.Screen name={ROUTES.MAIN} component={Main} />
+    <Stack.Screen name={ROUTES.MAIN} component={MainScreen} />
+    <Stack.Screen name={ROUTES.TRACKING} component={TrackingScreen} />
   </RootStack.Navigator>
 );
 
@@ -42,7 +48,7 @@ const App = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* TODO: add loading screen and auth logic */}
         {/* {!isLoggedIn ? ( */}
-        <Stack.Screen name="AuthStack" component={AuthNavigator} />
+        <Stack.Screen name={STACKS.AUTH} component={AuthNavigator} />
         {/* ) : ( */}
         <Stack.Screen name={STACKS.ROOT} component={RootNavigator} />
         {/* )} */}
