@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import * as TaskManager from 'expo-task-manager';
 import * as Location from 'expo-location';
+import { Container } from '~components';
 
 const LOCATION_TASK_NAME = 'LOCATION_TASK_NAME';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -145,7 +146,7 @@ const TrackingScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <Text>Longitude: {position?.longitude}</Text>
       <Text>Latitude: {position?.latitude}</Text>
       <View style={styles.separator} />
@@ -172,7 +173,7 @@ const TrackingScreen = () => {
         title="Stop in foreground"
         color="red"
       />
-    </View>
+    </Container>
   );
 };
 
