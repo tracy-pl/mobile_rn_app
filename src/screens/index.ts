@@ -1,6 +1,3 @@
 export * from './initial';
-export * from './main';
+export * from './root';
 export * from './auth';
-
-// test screens
-export * from './test-screens';

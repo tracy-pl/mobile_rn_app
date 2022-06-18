@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tracy_ts",
-    "slug": "tracy_ts",
+    "slug": "mobile-rn-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,13 +18,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+        "infoPlist": {
+          "UIBackgroundModes": [
+            "location",
+            "fetch"
+          ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
