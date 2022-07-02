@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Center } from 'native-base';
-import { toggleTheme, useAppDispatch } from '~redux';
 
 import { AuthContainer, InputField } from './components';
 import { Button, Text } from '~components';
@@ -24,7 +23,6 @@ const ForgotPasswordScreen: React.FC = () => {
       email: 'test@gmail.com',
     },
   });
-  const dispatch = useAppDispatch();
   // Mock RTK query req loading
   const [loading] = useState(false);
   const disabled = useMemo(
@@ -33,14 +31,11 @@ const ForgotPasswordScreen: React.FC = () => {
   );
 
   // TODO: add real API call
-  const onSubmit = useCallback(
-    (body: IForgetPswFormSchema) => {
-      // eslint-disable-next-line no-console
-      console.log(body);
-      dispatch(toggleTheme());
-    },
-    [dispatch],
-  );
+  const onSubmit = useCallback((body: IForgetPswFormSchema) => {
+    // eslint-disable-next-line no-console
+    console.log(body);
+    NavigationService.navigate(ROUTES.LOGIN);
+  }, []);
 
   return (
     <AuthContainer title="Forget password">

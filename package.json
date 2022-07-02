@@ -32,6 +32,7 @@
     "expo-task-manager": "~10.2.1",
     "expo-updates": "~0.13.1",
     "fast-text-encoding": "^1.0.3",
+    "geofire-common": "^5.2.0",
     "ignore-warnings": "^0.2.1",
     "joi": "^17.6.0",
     "native-base": "^3.4.5",
