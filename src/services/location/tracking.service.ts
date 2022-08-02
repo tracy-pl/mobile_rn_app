@@ -1,7 +1,7 @@
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import { TaskManagerTaskBody } from 'expo-task-manager';
-import { distanceBetween } from 'geofire-common';
+// import { distanceBetween } from 'geofire-common';
 import { Alert } from 'react-native';
 import { isLocationPermissionGranted } from '~services/location/permission.service';
 
@@ -68,7 +68,7 @@ TaskManager.defineTask(
   },
 );
 
-export const stopLocationUpdates = async () => {
+export const stopLocationUpdates = async (): Promise<void> => {
   try {
     Location.hasStartedLocationUpdatesAsync(LOCATION_TRACKING).then(value => {
       if (value) {
@@ -80,7 +80,7 @@ export const stopLocationUpdates = async () => {
   }
 };
 
-export const startLocationUpdates = async () => {
+export const startLocationUpdates = async (): Promise<void> => {
   const isGranted = await isLocationPermissionGranted();
   if (!isGranted) {
     // TODO: form user friendly error message
@@ -118,16 +118,16 @@ export const startLocationUpdates = async () => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-export const isLocationUpdatesRunning = async () => {
+export const isLocationUpdatesRunning = async (): Promise<boolean> => {
   try {
     return await Location.hasStartedLocationUpdatesAsync(LOCATION_TRACKING);
   } catch (err) {
+    return false;
     console.error(err);
   }
 };
 
-const startLocationTracking = async () => {
+const startLocationTracking = async (): Promise<void> => {
   await Location.startLocationUpdatesAsync(LOCATION_TRACKING, {
     accuracy: Location.Accuracy.Highest,
     timeInterval: 10000,
@@ -139,13 +139,13 @@ const startLocationTracking = async () => {
   console.log('tracking started?', hasStarted);
 };
 
-// eslint-disable-next-line consistent-return
-export const getLocation = async () => {
-  try {
-    return await Location.getCurrentPositionAsync({
-      accuracy: Location.Accuracy.Highest,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+export const getLocation =
+  async (): Promise<Location.LocationObject | null> => {
+    try {
+      return await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Highest,
+      });
+    } catch (err) {
+      return null;
+    }
+  };

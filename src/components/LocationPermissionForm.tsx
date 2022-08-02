@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Button } from '~components';
+import Button from '~components/Button';
+import Text from '~components/Text';
+
 import { isLocationPermissionGranted } from '~services/location';
 
 interface ILocationPermissionFormProps {
@@ -16,16 +18,11 @@ const LocationPermissionForm: React.FC<ILocationPermissionFormProps> = ({
 }) => {
   const [hasAccess, setHasAccess] = useState(false);
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    onRequestPermissions();
-  }, []);
-
   const onRequestPermissions = async () => {
-    const [isGranted, ...state] = await isLocationPermissionGranted();
+    const isGranted = await isLocationPermissionGranted();
 
     if (!isGranted) {
-      console.log('requesting permissions', isGranted, state);
+      console.log('requesting permissions', isGranted);
     }
 
     setHasAccess(isGranted);
@@ -36,10 +33,17 @@ const LocationPermissionForm: React.FC<ILocationPermissionFormProps> = ({
     [disabled, hasAccess],
   );
 
+  useEffect(() => {
+    onRequestPermissions();
+  }, []);
+
   return (
-    <Button disabled={isBtnDisabled} onPress={onSubmit}>
-      {btnText}
-    </Button>
+    <>
+      <Text>Location permission is required to use this app.</Text>
+      <Button disabled={isBtnDisabled} onPress={onSubmit}>
+        {btnText}
+      </Button>
+    </>
   );
 };
 

@@ -11,7 +11,7 @@ const shouldRequestAgain = ({
   canAskAgain: boolean;
 }) => !isGranted(status) && canAskAgain;
 
-export const isLocationPermissionGranted = async () => {
+export const isLocationPermissionGranted = async (): Promise<boolean> => {
   let [foregroundPermission, backgroundPermission] = await Promise.all([
     Location.getBackgroundPermissionsAsync().catch(() => null),
     Location.getForegroundPermissionsAsync().catch(() => null),
@@ -24,10 +24,8 @@ export const isLocationPermissionGranted = async () => {
     backgroundPermission = await Location.requestBackgroundPermissionsAsync();
   }
 
-  return [
+  return (
     isGranted(foregroundPermission?.status) ||
-      isGranted(backgroundPermission?.status),
-    foregroundPermission,
-    backgroundPermission,
-  ];
+    isGranted(backgroundPermission?.status)
+  );
 };

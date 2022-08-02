@@ -4,7 +4,7 @@
 
 ### How to run locally
 Install Node v16.14.0 (This repo uses a .nvm config, so if you're using [nvm](https://github.com/nvm-sh/nvm), 
-you can run `nvm install` and/or `nvm use` to install the latest long-term support version of node).
+you can run `npx nvm install` and/or `npx nvm use` to install the latest long-term support version of node).
 
 ``` bash
 1. yarn install

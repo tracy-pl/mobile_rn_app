@@ -5,7 +5,7 @@ const Settings = () => {
     <Container>
       <Text>Settings Screen</Text>
       <LocationPermissionForm
-        btnText="Finish"
+        btnText="Ask for location permission"
         onSubmit={() => console.log('LocationPermissionForm')}
       />
     </Container>
