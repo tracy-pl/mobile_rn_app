@@ -49,7 +49,6 @@ const TrackingScreen = () => {
               }}
               pinColor="black"
             />
-
             <Circle
               center={{
                 latitude: position?.latitude,
