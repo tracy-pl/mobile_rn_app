@@ -13382,9 +13382,9 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     react-native-iphone-x-helper "^1.0.3"
 
 react-native-maps@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.1.0.tgz#374dd1bcae1ef6702ff262e9f6f1967a65df00a2"
-  integrity sha512-PmdEVCisYkbvS5qKn/N5jiAP/zoUau0PBOc4CAil3lSMzLLwIqiLUzK1VNKQnbxwOaJalTZFxBoRUyPGgVAvmQ==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.2.0.tgz#04374a701b85d264eb50f33a2464d01a7c0b310a"
+  integrity sha512-n6QtGLznQ+1psY09st/qD1WluyQx9qIz3S0l9w/UA/ZMYhNWJiQpqrXzNpgJW1N+4uy2umjEpIYYHnhdzIFSKg==
   dependencies:
     "@types/geojson" "^7946.0.8"
 

@@ -5,7 +5,7 @@ import { Input } from '~components';
 interface IInputFieldProps {
   name: string;
   placeholder: string;
-  control: Control<any, unknown>; // eslint-disable-line
+  control: Control | any; // eslint-disable-line
 }
 
 const InputField: React.FC<IInputFieldProps> = ({
