@@ -3,7 +3,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
 
-import { appReducer, userReducer } from './modules';
+import { appReducer, userReducer, locationReducer } from './modules';
 
 const defaultMiddlewareConfig = { serializableCheck: false };
 
@@ -16,6 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
+  location: locationReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

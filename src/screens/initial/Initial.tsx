@@ -1,7 +1,8 @@
-import { Button } from 'react-native';
+import { VStack } from 'native-base';
 
 import { Container, Text } from '~components';
 import { useAppDispatch, finishIntroduction } from '~redux';
+import LocationPermissionForm from '../../components/LocationPermissionForm';
 
 const InitialScreen = () => {
   const dispatch = useAppDispatch();
@@ -12,8 +13,10 @@ const InitialScreen = () => {
 
   return (
     <Container>
-      <Text>InitialScreen</Text>
-      <Button title="Finish" onPress={onFinish} />
+      <VStack>
+        <Text>Tracy</Text>
+        <LocationPermissionForm onSubmit={onFinish} btnText="Finish" />
+      </VStack>
     </Container>
   );
 };
