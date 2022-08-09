@@ -61,7 +61,7 @@ const TrackingScreen = () => {
           <Text>Latitude: {position?.latitude}</Text>
         </>
       ) : (
-        <Text>Something went wrong</Text>
+        <Text>Loading...</Text>
       )}
     </Container>
   );
