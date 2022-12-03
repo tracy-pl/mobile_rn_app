@@ -10,7 +10,7 @@ export const ROUTES = {
   MY_ROUTES: 'Moje trasy',
   TRACKING: 'tracking',
   SUBSCRIPTION: 'Subskrypcja',
-  SETTINGS: 'Ustawienia'
+  SETTINGS: 'Ustawienia',
 } as const;
 
 export type ROUTES_ENUM = typeof ROUTES[keyof typeof ROUTES];
