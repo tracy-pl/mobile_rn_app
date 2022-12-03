@@ -1,4 +1,5 @@
-export interface ICoord {
-  latitude: number;
-  longitude: number;
+import { LatLng } from 'react-native-maps/lib/sharedTypes';
+
+export interface ICoord extends LatLng {
+  timestamp?: Date;
 }

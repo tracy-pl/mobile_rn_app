@@ -9,13 +9,13 @@ import {
   LoginScreen,
   ForgotPasswordScreen,
   MainScreen,
-  TrackingScreen,
   MyTracks,
   Subscription,
   Settings,
 } from '~screens';
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
+import TrackingScreen from '~features/tracking/screens/Tracking';
 
 const Stack = createStackNavigator();
 
@@ -42,7 +42,13 @@ const RootNavigator = () => {
     <RootStack.Navigator screenOptions={createBottomTabBarOptions(theme)}>
       <Stack.Screen name={ROUTES.MAIN} component={MainScreen} />
       <Stack.Screen name={ROUTES.MY_ROUTES} component={MyTracks} />
-      <Stack.Screen name={ROUTES.TRACKING} component={TrackingScreen} />
+      <Stack.Screen
+        name={ROUTES.TRACKING}
+        component={TrackingScreen}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        options={{ tabBarStyle: { display: 'none' } }}
+      />
       <Stack.Screen name={ROUTES.SUBSCRIPTION} component={Subscription} />
       <Stack.Screen name={ROUTES.SETTINGS} component={Settings} />
     </RootStack.Navigator>
