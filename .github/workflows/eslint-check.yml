@@ -24,5 +24,5 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-review
-          eslint_flags: '--quiet src/ test/'
+          eslint_flags: '--quiet src/'
           fail_on_error: true
