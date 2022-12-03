@@ -22,7 +22,7 @@ const LocationPermissionForm: React.FC<ILocationPermissionFormProps> = ({
     const isGranted = await isLocationPermissionGranted();
 
     if (!isGranted) {
-      console.log('requesting permissions', isGranted);
+      console.info('requesting permissions', isGranted);
     }
 
     setHasAccess(isGranted);

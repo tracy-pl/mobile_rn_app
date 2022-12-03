@@ -14,7 +14,7 @@ const InitialScreen = () => {
   return (
     <Container>
       <VStack>
-        <Text>Tracy</Text>
+        <Text>Onboarding screen</Text>
         <LocationPermissionForm onSubmit={onFinish} btnText="Finish" />
       </VStack>
     </Container>

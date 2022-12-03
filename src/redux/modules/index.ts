@@ -4,5 +4,5 @@ export * from './app';
 export { default as userReducer } from './user/user.slice';
 export * from './user';
 
-export { default as locationReducer } from './location/location.slice';
-export * from './location';
+export { default as trackingReducer } from './tracking/tracking.slice';
+export * from './tracking';

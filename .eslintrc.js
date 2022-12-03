@@ -27,6 +27,8 @@ module.exports = {
         node: true,
     },
     "rules": {
+        "no-underscore-dangle": "off",
+        "no-console": ["error", { "allow": ["warn", "error", "info"] }],
         "react/react-in-jsx-scope": "off",
         "import/no-unresolved": 0,
         "react/jsx-filename-extension": [1, {
