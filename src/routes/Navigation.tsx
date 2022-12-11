@@ -4,18 +4,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 
 import { navigationRef } from '~services/navigation.service';
-// import { useAppSelector } from '~redux';
+import { useAppSelector } from '~hooks';
+import { MainScreen, MyTracks, Subscription, Settings } from '~screens';
+
+import TrackingScreen from '~features/tracking/screens/Tracking';
 import {
   LoginScreen,
   ForgotPasswordScreen,
-  MainScreen,
-  MyTracks,
-  Subscription,
-  Settings,
-} from '~screens';
+  SignUpScreen,
+} from '~features/auth/screens';
+
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
-import TrackingScreen from '~features/tracking/screens/Tracking';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +28,7 @@ const AuthNavigator = () => (
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
+    <Stack.Screen name={ROUTES.SIGNUP} component={SignUpScreen} />
     <Stack.Screen
       name={ROUTES.FORGET_PASSWORD}
       component={ForgotPasswordScreen}
@@ -56,7 +57,9 @@ const RootNavigator = () => {
 };
 
 const App = () => {
-  // const isLoggedIn = useAppSelector(state => state.user.loggedIn);
+  const isLoggedIn = useAppSelector(state => state.user.loggedIn);
+
+  console.info({ isLoggedIn });
 
   return (
     <NavigationContainer ref={navigationRef}>

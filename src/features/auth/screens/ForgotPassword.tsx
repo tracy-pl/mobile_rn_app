@@ -2,25 +2,27 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Center } from 'native-base';
 
-import { AuthContainer, InputField } from './components';
+import { AuthContainer, InputField } from '../components';
 import { Button, Text } from '~components';
-import { getResolver, ILoginFormSchema, loginSchema } from '~utils/validation';
+import {
+  getResolver,
+  forgetPasswordSchema,
+  IForgetPswFormSchema,
+} from '~features/auth/utils/validation';
 import { NavigationService } from '~services';
-import { ROUTES, STACKS } from '~constants';
+import { ROUTES } from '~constants';
 
-const LoginScreen: React.FC = () => {
+const ForgotPasswordScreen: React.FC = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginFormSchema>({
-    resolver: getResolver(loginSchema),
+  } = useForm<IForgetPswFormSchema>({
+    resolver: getResolver(forgetPasswordSchema),
     defaultValues: {
       email: 'test@gmail.com',
-      password: '123456789',
     },
   });
-  // const dispatch = useAppDispatch();
   // Mock RTK query req loading
   const [loading] = useState(false);
   const disabled = useMemo(
@@ -29,16 +31,15 @@ const LoginScreen: React.FC = () => {
   );
 
   // TODO: add real API call
-  const onSubmit = useCallback((body: ILoginFormSchema) => {
+  const onSubmit = useCallback((body: IForgetPswFormSchema) => {
     // eslint-disable-next-line no-console
     console.log(body);
-    NavigationService.navigate(STACKS.ROOT);
+    NavigationService.navigate(ROUTES.LOGIN);
   }, []);
 
   return (
-    <AuthContainer title="Login">
+    <AuthContainer title="Forget password">
       <InputField name="email" placeholder="Email Address" control={control} />
-      <InputField name="password" placeholder="Password" control={control} />
       <Button
         onPress={handleSubmit(onSubmit)}
         isLoading={loading}
@@ -46,20 +47,14 @@ const LoginScreen: React.FC = () => {
       >
         Send
       </Button>
-      <Text>
-        {loading
-          ? 'Loading'
-          : errors?.email?.message || errors?.password?.message}
-      </Text>
+      <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
       <Center>
-        <Text
-          onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}
-        >
-          Forgot Password
+        <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
+          Back to login
         </Text>
       </Center>
     </AuthContainer>
   );
 };
 
-export default LoginScreen;
+export default ForgotPasswordScreen;

@@ -1,21 +1,19 @@
 import { VStack } from 'native-base';
 
-import { Container, Text } from '~components';
-import { useAppDispatch, finishIntroduction } from '~redux';
-import LocationPermissionForm from '../../components/LocationPermissionForm';
+import { Container, Text, LocationPermissionForm } from '~components';
+import { useActions } from '~hooks';
 
 const InitialScreen = () => {
-  const dispatch = useAppDispatch();
-
-  const onFinish = () => {
-    dispatch(finishIntroduction());
-  };
+  const { finishIntroduction } = useActions();
 
   return (
     <Container>
       <VStack>
         <Text>Onboarding screen</Text>
-        <LocationPermissionForm onSubmit={onFinish} btnText="Finish" />
+        <LocationPermissionForm
+          onSubmit={finishIntroduction}
+          btnText="Finish"
+        />
       </VStack>
     </Container>
   );

@@ -38,7 +38,6 @@ const trackingSlice = createSlice({
   },
 });
 
-export const { pushLocation, clearTracking, setCurrentLocation } =
-  trackingSlice.actions;
+export const trackingActions = trackingSlice.actions;
 
-export default trackingSlice.reducer;
+export const trackingReducer = trackingSlice.reducer;

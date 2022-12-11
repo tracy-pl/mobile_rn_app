@@ -3,7 +3,10 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
 
-import { appReducer, userReducer, trackingReducer } from './modules';
+import { appReducer } from './app';
+import { userReducer } from './user/user.slice';
+import { trackingReducer } from '~features/tracking/redux';
+import { authReducer } from '~features/auth/redux';
 
 const defaultMiddlewareConfig = { serializableCheck: false };
 
@@ -15,6 +18,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   app: appReducer,
+  auth: authReducer,
   user: userReducer,
   tracking: trackingReducer,
 });
@@ -22,6 +26,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const setupStore = () => {
   return configureStore({
+    devTools: __DEV__,
     reducer: persistedReducer,
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware(defaultMiddlewareConfig),

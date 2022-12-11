@@ -11,7 +11,7 @@ import '~constants';
 
 import RootNavigation from '~routes';
 import { ThemeProvider } from '~providers';
-import { store, persistor } from '~redux';
+import { store, persistor } from '~redux/store';
 import { useCachedResources, useOnAppClose } from '~hooks';
 
 const App = () => {

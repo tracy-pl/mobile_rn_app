@@ -1,5 +1,5 @@
 import { Initial } from '~screens';
-import { useAppSelector } from '~redux/hooks';
+import { useAppSelector } from '~hooks';
 
 import Main from './Navigation';
 

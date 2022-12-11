@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { Center, Circle } from 'native-base';
 import { DefaultTheme } from 'styled-components';
 import { RouteProp } from '@react-navigation/core/lib/typescript/src/types';
@@ -13,9 +14,7 @@ import {
 import { ROUTES } from '~constants';
 import { Text } from '~components';
 
-const getNavigationIcon = (
-  color: string,
-): { [key: string]: React.ReactElement } => {
+const getNavigationIcon = (color: string): { [key: string]: ReactElement } => {
   return {
     [ROUTES.MAIN]: (
       <FontAwesome5 name="location-arrow" size={18} color={color} />
