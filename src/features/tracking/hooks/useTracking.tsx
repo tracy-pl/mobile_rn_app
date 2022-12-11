@@ -3,16 +3,11 @@ import { Alert } from 'react-native';
 import * as TaskManager from 'expo-task-manager';
 import * as Location from 'expo-location';
 
-import {
-  useAppSelector,
-  pushLocation,
-  store,
-  useAppDispatch,
-  clearTracking,
-  setCurrentLocation,
-} from '~redux';
+import { store } from '~redux/store';
+import { useAppSelector, useActions } from '~hooks';
 import { isLocationPermissionGranted } from '~services/location';
 import { getLatLng } from '~utils/common/location.utils';
+import { trackingActions } from '../redux';
 
 const TASK_FETCH_LOCATION = 'TASK_FETCH_LOCATION';
 
@@ -32,7 +27,7 @@ try {
       const [location] = locations;
       // dispatch action to add new coord
       store.dispatch(
-        pushLocation({
+        trackingActions.pushLocation({
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
           timestamp: new Date(),
@@ -102,7 +97,7 @@ export const getLocation = async () => {
 };
 
 export default function useTracking() {
-  const dispatch = useAppDispatch();
+  const { setCurrentLocation, clearTracking } = useActions();
   const { trackingCoordinates, currentLocation } = useAppSelector(
     state => state.tracking,
   );
@@ -125,12 +120,12 @@ export default function useTracking() {
         }
         const _currentLocation = await getLocation();
 
-        dispatch(setCurrentLocation(getLatLng(_currentLocation)));
+        setCurrentLocation(getLatLng(_currentLocation));
       } catch (e) {
         setTrackingError(e);
       }
     })();
-  }, []);
+  }, [setCurrentLocation]);
 
   // useEffect(() => {
   //   if (loading && inTracking && currentLocation) setLoading(false);
@@ -157,11 +152,11 @@ export default function useTracking() {
 
       setInTracking(false);
       setLoading(false);
-      dispatch(clearTracking());
+      clearTracking();
     } catch (e) {
       setTrackingError(e);
     }
-  }, [dispatch]);
+  }, [clearTracking]);
 
   return {
     trackingCoordinates,

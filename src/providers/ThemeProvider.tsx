@@ -4,8 +4,8 @@ import { ThemeProvider as SCThemeProvider } from 'styled-components/native';
 import { ColorMode, NativeBaseProvider, StatusBar } from 'native-base';
 import type { StorageManager } from 'native-base';
 
-import { useAppDispatch, useAppSelector } from '~redux/hooks';
-import { getTheme, setTheme } from '~redux/modules';
+import { useActions, useAppSelector } from '~hooks';
+import { getTheme } from '~redux/app';
 import { theme, nativeBaseTheme, COLOR_SCHEMES, THEME } from '~theme';
 
 interface ThemeProviderProps {
@@ -13,7 +13,7 @@ interface ThemeProviderProps {
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const dispatch = useAppDispatch();
+  const { setTheme } = useActions();
   const storedScheme = useAppSelector(getTheme);
   const phoneScheme = useColorScheme() || THEME.LIGHT;
   const currentScheme: ColorSchemeName = useMemo(
@@ -22,7 +22,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   );
   const colorModeManager: StorageManager = {
     get: async () => currentScheme,
-    set: (value: ColorMode) => dispatch(setTheme(value)),
+    set: (value: ColorMode) => setTheme(value),
   };
 
   return (

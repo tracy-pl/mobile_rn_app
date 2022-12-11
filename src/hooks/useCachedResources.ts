@@ -4,7 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { fontAssets } from '~theme/fonts';
 import { imageAssets } from '~theme/images';
 
-export default function useCachedResources() {
+export function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   useEffect(() => {
