@@ -1,12 +1,13 @@
 import { Initial } from '~screens';
 import { useAppSelector } from '~hooks';
+import { isIntroductionFinished } from '~redux/app';
 
 import Main from './Navigation';
 
 const RootNavigation = () => {
-  const { checkedIn } = useAppSelector(state => state.app);
+  const introductionFinished = useAppSelector(isIntroductionFinished);
 
-  if (!checkedIn) return <Initial />;
+  if (!introductionFinished) return <Initial />;
 
   return <Main />;
 };

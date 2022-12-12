@@ -1,12 +1,13 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { appReducer } from './app';
-import { userReducer } from './user/user.slice';
-import { trackingReducer } from '~features/tracking/redux';
+import { userReducer } from './user';
+
 import { authReducer } from '~features/auth/redux';
+import { trackingReducer } from '~features/tracking/redux';
 
 const defaultMiddlewareConfig = { serializableCheck: false };
 

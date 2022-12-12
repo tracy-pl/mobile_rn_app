@@ -1,5 +1,5 @@
 import { RootState } from '~redux/store';
 
-const getTheme = (state: RootState) => state.app.theme;
-
-export { getTheme };
+export const getTheme = (state: RootState) => state.app.theme;
+export const isIntroductionFinished = (state: RootState) =>
+  state.app.introductionFinished;

@@ -3,12 +3,12 @@ import { THEME, ThemeEnum } from '~theme';
 
 interface AppState {
   theme: ThemeEnum;
-  checkedIn: boolean; // Finished introduction screens
+  introductionFinished: boolean; // Finished introduction screens
 }
 
 const initialState: AppState = {
   theme: THEME.DEFAULT,
-  checkedIn: false,
+  introductionFinished: false,
 };
 
 const appSlice = createSlice({
@@ -22,11 +22,10 @@ const appSlice = createSlice({
       state.theme = state.theme !== THEME.DARK ? THEME.DARK : THEME.LIGHT;
     },
     finishIntroduction: state => {
-      state.checkedIn = true;
+      state.introductionFinished = true;
     },
   },
 });
 
 export const appActions = appSlice.actions;
-
 export const appReducer = appSlice.reducer;

@@ -1,24 +1,24 @@
+import { useTheme } from 'styled-components';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'styled-components';
 
-import { navigationRef } from '~services/navigation.service';
 import { useAppSelector } from '~hooks';
+import { isLoggedIn } from '~redux/user/user.selectors';
+import { navigationRef } from '~services/navigation.service';
 import { MainScreen, MyTracks, Subscription, Settings } from '~screens';
 
-import TrackingScreen from '~features/tracking/screens/Tracking';
 import {
   LoginScreen,
   ForgotPasswordScreen,
   SignUpScreen,
 } from '~features/auth/screens';
+import TrackingScreen from '~features/tracking/screens/Tracking';
 
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
 
 const Stack = createStackNavigator();
-
 const AuthStack = createStackNavigator();
 const RootStack = createBottomTabNavigator();
 
@@ -57,9 +57,9 @@ const RootNavigator = () => {
 };
 
 const App = () => {
-  const isLoggedIn = useAppSelector(state => state.user.loggedIn);
+  const _isLoggedIn = useAppSelector(isLoggedIn);
 
-  console.info({ isLoggedIn });
+  console.info({ _isLoggedIn });
 
   return (
     <NavigationContainer ref={navigationRef}>

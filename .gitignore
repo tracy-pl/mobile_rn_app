@@ -13,3 +13,4 @@ web-report/
 *.DS_Store
 .env
 .eslintcache
+yarn-error.log
