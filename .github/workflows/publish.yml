@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - prod
+      - develop
 jobs:
   publish:
     runs-on: ubuntu-latest
