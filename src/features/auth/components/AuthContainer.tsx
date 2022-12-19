@@ -1,7 +1,13 @@
 import React from 'react';
-import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
-import { Center, Heading, KeyboardAvoidingView, VStack } from 'native-base';
-import { Container } from '~components';
+import {
+  Keyboard,
+  Platform,
+  TouchableWithoutFeedback,
+  Text,
+  View,
+} from 'react-native';
+import { KeyboardAvoidingView, VStack } from 'native-base';
+import { fonts } from '~theme';
 
 interface IAuthContainerProps {
   children: React.ReactNode;
@@ -15,14 +21,21 @@ const AuthContainer: React.FC<IAuthContainerProps> = ({ children, title }) => {
         flex={1}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <Container>
-          <Center flex={1}>
-            <VStack w="100%" pb={4}>
-              <Heading mb="3">{title}</Heading>
-              {children}
-            </VStack>
-          </Center>
-        </Container>
+        <View style={{ paddingHorizontal: 12 }}>
+          <VStack w="100%" pb={4}>
+            <Text
+              style={{
+                fontWeight: '700',
+                fontFamily: fonts.inter.bold,
+                fontSize: 32,
+                marginBottom: 24,
+              }}
+            >
+              {title}
+            </Text>
+            {children}
+          </VStack>
+        </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
