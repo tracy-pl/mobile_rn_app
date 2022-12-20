@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useCallback } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { Input } from '~components';
 import { PasswordInput } from '~components/PasswordInput';
@@ -14,38 +15,41 @@ const InputField: React.FC<IInputFieldProps> = ({
   placeholder,
   control,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const renderInput = (name, onChange, value, onBlur) => {
-    switch (name) {
-      case 'password':
-        return (
-          <PasswordInput
-            onChangeText={onChange}
-            value={value}
-            onBlur={onBlur}
-            placeholder={placeholder}
-          />
-        );
-      default:
-        return (
-          <Input
-            borderRadius="xl"
-            mb={4}
-            onChangeText={onChange}
-            value={value}
-            onBlur={onBlur}
-            placeholder={placeholder}
-            style={{ height: 64 }}
-          />
-        );
-    }
-  };
+  const renderInput = useCallback(
+    (onChange, value, onBlur) => {
+      switch (name) {
+        case 'password':
+          return (
+            <PasswordInput
+              onChangeText={onChange}
+              value={value}
+              onBlur={onBlur}
+              placeholder={placeholder}
+            />
+          );
+        default:
+          return (
+            <Input
+              borderRadius="xl"
+              mb={4}
+              onChangeText={onChange}
+              value={value}
+              onBlur={onBlur}
+              placeholder={placeholder}
+              style={{ height: 64 }}
+            />
+          );
+      }
+    },
+    [placeholder, name]
+  );
+
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { onChange, onBlur, value } }) => {
-        return renderInput(name, onChange, value, onBlur);
+        return renderInput(onChange, value, onBlur);
       }}
     />
   );

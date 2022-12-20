@@ -1,9 +1,9 @@
 import React from 'react';
+import styled from 'styled-components/native';
 import {
   Keyboard,
   Platform,
   TouchableWithoutFeedback,
-  Text,
   View,
 } from 'react-native';
 import { KeyboardAvoidingView, VStack } from 'native-base';
@@ -23,16 +23,7 @@ const AuthContainer: React.FC<IAuthContainerProps> = ({ children, title }) => {
       >
         <View style={{ paddingHorizontal: 12 }}>
           <VStack w="100%" pb={4}>
-            <Text
-              style={{
-                fontWeight: '700',
-                fontFamily: fonts.inter.bold,
-                fontSize: 32,
-                marginBottom: 24,
-              }}
-            >
-              {title}
-            </Text>
+            <Title>{title}</Title>
             {children}
           </VStack>
         </View>
@@ -40,5 +31,11 @@ const AuthContainer: React.FC<IAuthContainerProps> = ({ children, title }) => {
     </TouchableWithoutFeedback>
   );
 };
+
+const Title = styled.Text`
+  font-family: ${fonts.inter.bold};
+  font-size: 32px;
+  margin-bottom: 24px;
+`;
 
 export default AuthContainer;

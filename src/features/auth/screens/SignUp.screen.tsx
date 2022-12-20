@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Center, ChevronLeftIcon, HStack } from 'native-base';
 
 import { AuthContainer, InputField } from '../components';
-import { Button, Text } from '~components';
+import { Button } from '~components';
 import {
   getResolver,
   ISignUpFormSchema,
@@ -48,15 +49,7 @@ const SignUpScreen: React.FC = () => {
           <HStack space={2}>
             <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
           </HStack>
-          <Text
-            style={{
-              fontFamily: fonts.inter.regular,
-              fontSize: 22,
-              color: colors.blue2,
-            }}
-          >
-            Zaloguj się
-          </Text>
+          <Login>Zaloguj się</Login>
         </Text>
         <ImageBackground
           source={require('../../../../assets/images/signup-screen-img.png')}
@@ -72,22 +65,13 @@ const SignUpScreen: React.FC = () => {
         />
         <InputField name="password" placeholder="Hasło" control={control} />
         <InputField name="name" placeholder="Imię" control={control} />
-        <Button
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          style={styles.button}
+        <RegisterButton
           onPress={handleSubmit(onSubmit)}
           isLoading={loading}
           isDisabled={disabled}
         >
-          <Text
-            style={
-              // eslint-disable-next-line @typescript-eslint/no-use-before-define
-              styles.buttonText
-            }
-          >
-            Zarejestruj się
-          </Text>
-        </Button>
+          <ButtonText>Zarejestruj się</ButtonText>
+        </RegisterButton>
         <Text>
           {loading
             ? 'Loading'
@@ -95,48 +79,37 @@ const SignUpScreen: React.FC = () => {
         </Text>
         <Center>
           <Text style={{ textAlign: 'center' }}>
-            By signing up you agree to our{' '}
-            <Text
-              style={
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                styles.boldBlueText
-              }
-            >
-              Privacy Policy
-            </Text>{' '}
-            and{' '}
-            <Text
-              // eslint-disable-next-line @typescript-eslint/no-use-before-define
-              style={styles.boldBlueText}
-            >
-              Terms of Use
-            </Text>
+            By signing up you agree to our <Terms>Privacy Policy</Terms> and{' '}
+            <Terms>Terms of Use</Terms>
           </Text>
         </Center>
       </AuthContainer>
     </SafeAreaView>
   );
 };
+const Login = styled.Text`
+  font-family: ${fonts.inter.regular};
+  font-size: 22px;
+  color: ${colors.blue2};
+`;
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: colors.blue1,
-    width: '100%',
-    borderRadius: 16,
-    paddingTop: 16,
-    paddingBottom: 16,
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 16,
-    fontWeight: '600',
-    fontFamily: fonts.inter.semiBold,
-  },
-  boldBlueText: {
-    fontFamily: fonts.inter.bold,
-    color: colors.blue1,
-    fontWeight: '700',
-  },
-});
+const ButtonText = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+`;
+const RegisterButton = styled(Button)`
+  background-color: ${colors.blue1};
+  width: 100%;
+  border-radius: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+`;
+
+const Terms = styled.Text`
+  font-family: ${fonts.inter.bold};
+  color: ${colors.blue1};
+  font-weight: 700;
+`;
 
 export default SignUpScreen;
