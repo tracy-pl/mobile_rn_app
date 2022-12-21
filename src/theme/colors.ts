@@ -3,6 +3,8 @@ const colors = {
   white: '#ffffff',
   black: '#000000',
   blue: '#0081F6',
+  blue1: '#2787FF',
+  blue2: '#007AFF',
 };
 
 const nativeBaseThemeColors = {

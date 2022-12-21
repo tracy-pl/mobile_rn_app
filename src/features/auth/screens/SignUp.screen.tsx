@@ -1,9 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { ImageBackground, View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
-import { Center } from 'native-base';
+import styled from 'styled-components/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Center, ChevronLeftIcon, HStack } from 'native-base';
 
 import { AuthContainer, InputField } from '../components';
-import { Button, Text } from '~components';
+import { Button } from '~components';
 import {
   getResolver,
   ISignUpFormSchema,
@@ -11,6 +14,7 @@ import {
 } from '../utils/validation';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
+import { colors, fonts } from '~theme';
 
 const SignUpScreen: React.FC = () => {
   const {
@@ -27,9 +31,11 @@ const SignUpScreen: React.FC = () => {
   // const dispatch = useAppDispatch();
   // Mock RTK query req loading
   const [loading] = useState(false);
+
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
-    [loading, errors?.email?.message],
+    // eslint-disable-next-line prettier/prettier
+    [loading, errors?.email?.message]
   );
 
   const onSubmit = useCallback((body: ISignUpFormSchema) => {
@@ -37,29 +43,73 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <AuthContainer title="Registration">
-      <InputField name="email" placeholder="Email Address" control={control} />
-      <InputField name="password" placeholder="Password" control={control} />
-      <InputField name="password" placeholder="Password" control={control} />
-      <Button
-        onPress={handleSubmit(onSubmit)}
-        isLoading={loading}
-        isDisabled={disabled}
-      >
-        Send
-      </Button>
-      <Text>
-        {loading
-          ? 'Loading'
-          : errors?.email?.message || errors?.password?.message}
-      </Text>
-      <Center>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start' }}>
+      <View style={{ paddingHorizontal: 12 }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
-          Back to Sign in
+          <HStack space={2}>
+            <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
+          </HStack>
+          <Login>Zaloguj się</Login>
         </Text>
-      </Center>
-    </AuthContainer>
+        <ImageBackground
+          source={require('../../../../assets/images/signup-screen-img.png')}
+          resizeMode="cover"
+          style={{ width: 268, height: 268, marginTop: -20, zIndex: -1 }}
+        />
+      </View>
+      <AuthContainer title="Zarejestruj się ✍️">
+        <InputField
+          name="email"
+          placeholder="Email Address"
+          control={control}
+        />
+        <InputField name="password" placeholder="Hasło" control={control} />
+        <InputField name="name" placeholder="Imię" control={control} />
+        <RegisterButton
+          onPress={handleSubmit(onSubmit)}
+          isLoading={loading}
+          isDisabled={disabled}
+        >
+          <ButtonText>Zarejestruj się</ButtonText>
+        </RegisterButton>
+        <Text>
+          {loading
+            ? 'Loading'
+            : errors?.email?.message || errors?.password?.message}
+        </Text>
+        <Center>
+          <Text style={{ textAlign: 'center' }}>
+            By signing up you agree to our <Terms>Privacy Policy</Terms> and{' '}
+            <Terms>Terms of Use</Terms>
+          </Text>
+        </Center>
+      </AuthContainer>
+    </SafeAreaView>
   );
 };
+const Login = styled.Text`
+  font-family: ${fonts.inter.regular};
+  font-size: 22px;
+  color: ${colors.blue2};
+`;
+
+const ButtonText = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+`;
+const RegisterButton = styled(Button)`
+  background-color: ${colors.blue1};
+  width: 100%;
+  border-radius: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+`;
+
+const Terms = styled.Text`
+  font-family: ${fonts.inter.bold};
+  color: ${colors.blue1};
+  font-weight: 700;
+`;
 
 export default SignUpScreen;
