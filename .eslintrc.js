@@ -63,5 +63,6 @@ module.exports = {
       },
     ],
     'react/function-component-definition': 0,
+    'class-methods-use-this': 0,
   },
 };

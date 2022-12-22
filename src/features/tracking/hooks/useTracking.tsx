@@ -41,11 +41,7 @@ try {
 
 export const stopLocationUpdates = async () => {
   try {
-    Location.hasStartedLocationUpdatesAsync(TASK_FETCH_LOCATION).then(value => {
-      if (value) {
-        Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION);
-      }
-    });
+    await Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION);
   } catch (err) {
     console.error(err);
   }
