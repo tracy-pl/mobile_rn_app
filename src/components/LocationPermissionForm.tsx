@@ -1,9 +1,10 @@
 import * as Location from 'expo-location';
 import { Linking } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '~components/Button';
 import Text from '~components/Text';
+import { isLocationPermissionGranted } from '~services/location';
 
 interface ILocationPermissionFormProps {
   btnText?: string;
@@ -42,9 +43,9 @@ interface ILocationPermissionFormProps {
 //     [disabled, error, hasAccess, loading],
 //   );
 //
-//   useEffect(() => {
-//     onRequestPermissions();
-//   }, []);
+// useEffect(() => {
+//   isLocationPermissionGranted()
+// }, []);
 //
 //   return (
 //     <>
@@ -62,6 +63,10 @@ const NewForm: React.FC<ILocationPermissionFormProps> = ({
 }) => {
   const [foreground, requestForeground] = Location.useForegroundPermissions();
   const [background, requestBackground] = Location.useBackgroundPermissions();
+
+  useEffect(() => {
+    isLocationPermissionGranted().catch(console.error);
+  }, []);
 
   // In this example, we follow a couple of rules for the permissions
   //  1. Foreground permission needs to be granted before asking background permission
