@@ -21,7 +21,9 @@
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": [
-          "location"
+          "location",
+          "fetch",
+          "processing"
         ]
       }
     },

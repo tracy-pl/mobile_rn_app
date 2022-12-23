@@ -46,13 +46,13 @@ export default class ErrorBoundary extends React.Component<
   render() {
     const { hasError, error, errorInfo } = this.state;
 
-    if (IS_DEV_ENV) {
-      Alert.alert(error?.message);
-      Alert.alert(errorInfo?.componentStack);
-      Alert.alert(error?.stack);
-    }
-
     if (hasError) {
+      if (IS_DEV_ENV) {
+        Alert.alert(error?.message);
+        Alert.alert(errorInfo?.componentStack);
+        Alert.alert(error?.stack);
+      }
+
       return (
         <Container>
           <HStack flex={1} justifyContent="center">
