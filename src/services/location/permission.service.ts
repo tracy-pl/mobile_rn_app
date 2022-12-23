@@ -12,19 +12,23 @@ const shouldRequestAgain = ({
 }) => !isGranted(status) && canAskAgain;
 
 export const isLocationPermissionGranted = async (): Promise<boolean> => {
-  let [foregroundPermission, backgroundPermission] = await Promise.all([
-    Location.getBackgroundPermissionsAsync().catch(() => null),
-    Location.getForegroundPermissionsAsync().catch(() => null),
-  ]);
+  try {
+    let [foregroundPermission, backgroundPermission] = await Promise.all([
+      Location.getBackgroundPermissionsAsync().catch(() => null),
+      Location.getForegroundPermissionsAsync().catch(() => null),
+    ]);
 
-  if (shouldRequestAgain(foregroundPermission)) {
-    foregroundPermission = await Location.requestForegroundPermissionsAsync();
-  }
-  if (shouldRequestAgain(backgroundPermission)) {
-    backgroundPermission = await Location.requestBackgroundPermissionsAsync();
-  }
+    if (shouldRequestAgain(foregroundPermission)) {
+      foregroundPermission = await Location.requestForegroundPermissionsAsync();
+    }
+    if (shouldRequestAgain(backgroundPermission)) {
+      backgroundPermission = await Location.requestBackgroundPermissionsAsync();
+    }
 
-  return [foregroundPermission, backgroundPermission].every(
-    p => p && isGranted(p.status),
-  );
+    return [foregroundPermission, backgroundPermission].every(
+      p => p && isGranted(p.status),
+    );
+  } catch (error) {
+    return false;
+  }
 };

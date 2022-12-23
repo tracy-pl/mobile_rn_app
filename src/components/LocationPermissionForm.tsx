@@ -1,10 +1,13 @@
 import * as Location from 'expo-location';
 import { Linking } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from '~components/Button';
 import Text from '~components/Text';
 import { isLocationPermissionGranted } from '~services/location';
+import showToast from '~utils/common/showToast';
+
+import packageJson from '../../package.json';
 
 interface ILocationPermissionFormProps {
   btnText?: string;
@@ -63,10 +66,23 @@ const NewForm: React.FC<ILocationPermissionFormProps> = ({
 }) => {
   const [foreground, requestForeground] = Location.useForegroundPermissions();
   const [background, requestBackground] = Location.useBackgroundPermissions();
+  const [isUserInformed, setIsUserInformed] = useState(false);
 
   useEffect(() => {
-    isLocationPermissionGranted().catch(console.error);
-  }, []);
+    const id = setTimeout(() => {
+      if (!isUserInformed || !foreground.granted || !background.granted) {
+        showToast({
+          type: 'error',
+          topText: 'Location permission denied',
+          bottomText: '',
+        });
+        setIsUserInformed(true);
+        isLocationPermissionGranted();
+      }
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, [foreground, background, isUserInformed]);
 
   // In this example, we follow a couple of rules for the permissions
   //  1. Foreground permission needs to be granted before asking background permission
@@ -135,12 +151,15 @@ const NewForm: React.FC<ILocationPermissionFormProps> = ({
         )}
       {btnText && (
         <Button
-          disabled={!background?.granted || !foreground?.granted}
+          disabled={
+            !isUserInformed && (!background?.granted || !foreground?.granted)
+          }
           onPress={onSubmit}
         >
           {btnText}
         </Button>
       )}
+      <Text>App version: {packageJson.version}</Text>
     </>
   );
 };
