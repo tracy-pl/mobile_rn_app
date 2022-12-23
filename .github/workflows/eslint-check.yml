@@ -11,16 +11,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'yarn'
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Run eslint using reviewdog
         uses: reviewdog/action-eslint@v1
         with:
           eslint_flags: 'src/'
-          fail_on_error: true
-      - name: Run tsc using reviewdog
-        uses: EPMatt/reviewdog-action-tsc@v1
-        with:
-          tsc_flags: 'src/'
           fail_on_error: true
