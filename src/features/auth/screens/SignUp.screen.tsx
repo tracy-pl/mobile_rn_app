@@ -2,11 +2,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { ImageBackground, View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Center, ChevronLeftIcon, HStack } from 'native-base';
 
 import { AuthContainer, InputField } from '../components';
-import { Button } from '~components';
+import { Button, Container } from '~components';
 import {
   getResolver,
   ISignUpFormSchema,
@@ -34,8 +33,7 @@ const SignUpScreen: React.FC = () => {
 
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
-    // eslint-disable-next-line prettier/prettier
-    [loading, errors?.email?.message]
+    [loading, errors?.email?.message],
   );
 
   const onSubmit = useCallback((body: ISignUpFormSchema) => {
@@ -43,7 +41,7 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start' }}>
+    <Container>
       <View style={{ paddingHorizontal: 12 }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
           <HStack space={2}>
@@ -84,7 +82,7 @@ const SignUpScreen: React.FC = () => {
           </Text>
         </Center>
       </AuthContainer>
-    </SafeAreaView>
+    </Container>
   );
 };
 const Login = styled.Text`

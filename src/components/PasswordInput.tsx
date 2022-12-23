@@ -1,20 +1,19 @@
-import { MaterialIcons } from '@expo/vector-icons';
-import { Icon, Input } from 'native-base';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Icon, IInputProps } from 'native-base';
 import { Pressable } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export const PasswordInput = ({ onChangeText, value, onBlur, placeholder }) => {
+import Input from './Input';
+
+export const PasswordInput: React.FC<IInputProps> = props => {
   const [show, setShow] = useState(false);
 
   return (
     <Input
+      {...props}
       borderRadius="xl"
       mb={4}
       type={show ? 'text' : 'password'}
-      onChangeText={onChangeText}
-      value={value}
-      onBlur={onBlur}
-      placeholder={placeholder}
       style={{ height: 64 }}
       InputRightElement={
         <Pressable onPress={() => setShow(!show)}>
