@@ -19,3 +19,8 @@ jobs:
         with:
           eslint_flags: 'src/'
           fail_on_error: true
+      - name: Run tsc using reviewdog
+        uses: reviewdog/action-tsc@v1
+        with:
+          tsc_flags: 'src/'
+          fail_on_error: true
