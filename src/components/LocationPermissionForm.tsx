@@ -25,7 +25,7 @@ const LocationPermissionForm: React.FC<ILocationPermissionFormProps> = ({
       console.info('requesting permissions', isGranted);
     }
 
-    setHasAccess(isGranted)
+    setHasAccess(isGranted);
   };
 
   const isBtnDisabled = useMemo(
