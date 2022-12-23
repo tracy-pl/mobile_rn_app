@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Center } from 'native-base';
 
 import { AuthContainer, InputField } from '../components';
-import { Button, Text } from '~components';
+import { Button, Container, Text } from '~components';
 import {
   getResolver,
   ILoginFormSchema,
@@ -29,7 +29,8 @@ const LoginScreen: React.FC = () => {
   const [loading] = useState(false);
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
-    [loading, errors?.email?.message],
+    // eslint-disable-next-line prettier/prettier
+    [loading, errors?.email?.message]
   );
 
   // TODO: add real API call
@@ -39,29 +40,35 @@ const LoginScreen: React.FC = () => {
   }, []);
 
   return (
-    <AuthContainer title="Login">
-      <InputField name="email" placeholder="Email Address" control={control} />
-      <InputField name="password" placeholder="Password" control={control} />
-      <Button
-        onPress={handleSubmit(onSubmit)}
-        isLoading={loading}
-        isDisabled={disabled}
-      >
-        Send
-      </Button>
-      <Text>
-        {loading
-          ? 'Loading'
-          : errors?.email?.message || errors?.password?.message}
-      </Text>
-      <Center>
-        <Text
-          onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}
+    <Container>
+      <AuthContainer title="Login">
+        <InputField
+          name="email"
+          placeholder="Email Address"
+          control={control}
+        />
+        <InputField name="password" placeholder="Password" control={control} />
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          isLoading={loading}
+          isDisabled={disabled}
         >
-          Forgot Password
+          Send
+        </Button>
+        <Text>
+          {loading
+            ? 'Loading'
+            : errors?.email?.message || errors?.password?.message}
         </Text>
-      </Center>
-    </AuthContainer>
+        <Center>
+          <Text
+            onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}
+          >
+            Forgot Password
+          </Text>
+        </Center>
+      </AuthContainer>
+    </Container>
   );
 };
 

@@ -1,20 +1,19 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { ImageBackground, View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components/native';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Center, ChevronLeftIcon, HStack } from 'native-base';
-
-import { AuthContainer, InputField } from '../components';
-import { Button } from '~components';
+import { AuthContainer, InputField } from '../../components';
 import {
   getResolver,
   ISignUpFormSchema,
   signUpSchema,
-} from '../utils/validation';
+} from '../../utils/validation';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
-import { colors, fonts } from '~theme';
+import { ButtonText, Login, RegisterButton, Terms } from './styles';
+import { colors } from '~theme';
 
 const SignUpScreen: React.FC = () => {
   const {
@@ -52,7 +51,7 @@ const SignUpScreen: React.FC = () => {
           <Login>Zaloguj się</Login>
         </Text>
         <ImageBackground
-          source={require('../../../../assets/images/signup-screen-img.png')}
+          source={require('../../../../../assets/images/signup-screen-img.png')}
           resizeMode="cover"
           style={{ width: 268, height: 268, marginTop: -20, zIndex: -1 }}
         />
@@ -87,29 +86,5 @@ const SignUpScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
-const Login = styled.Text`
-  font-family: ${fonts.inter.regular};
-  font-size: 22px;
-  color: ${colors.blue2};
-`;
-
-const ButtonText = styled.Text`
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-`;
-const RegisterButton = styled(Button)`
-  background-color: ${colors.blue1};
-  width: 100%;
-  border-radius: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-`;
-
-const Terms = styled.Text`
-  font-family: ${fonts.inter.bold};
-  color: ${colors.blue1};
-  font-weight: 700;
-`;
 
 export default SignUpScreen;

@@ -2,6 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Icon, Input } from 'native-base';
 import { useState } from 'react';
 import { Pressable } from 'react-native';
+import { colors, fonts } from '~theme';
 
 export const PasswordInput = ({ onChangeText, value, onBlur, placeholder }) => {
   const [show, setShow] = useState(false);
@@ -15,7 +16,17 @@ export const PasswordInput = ({ onChangeText, value, onBlur, placeholder }) => {
       value={value}
       onBlur={onBlur}
       placeholder={placeholder}
-      style={{ height: 64 }}
+      _focus={{
+        borderColor: colors.blue2,
+        backgroundColor: colors.white,
+      }}
+      style={{
+        height: 64,
+        fontFamily: fonts.inter.medium,
+        fontWeight: '500',
+        paddingLeft: 24,
+        fontSize: 16,
+      }}
       InputRightElement={
         <Pressable onPress={() => setShow(!show)}>
           <Icon
