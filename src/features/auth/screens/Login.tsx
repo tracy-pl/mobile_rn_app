@@ -39,8 +39,8 @@ const LoginScreen: React.FC = () => {
   }, []);
 
   return (
-    <AuthContainer title="Login">
-      <Container>
+    <Container>
+      <AuthContainer title="Login">
         <InputField
           name="email"
           placeholder="Email Address"
@@ -66,8 +66,8 @@ const LoginScreen: React.FC = () => {
             Forgot Password
           </Text>
         </Center>
-      </Container>
-    </AuthContainer>
+      </AuthContainer>
+    </Container>
   );
 };
 

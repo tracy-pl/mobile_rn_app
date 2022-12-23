@@ -24,8 +24,7 @@ export const isLocationPermissionGranted = async (): Promise<boolean> => {
     backgroundPermission = await Location.requestBackgroundPermissionsAsync();
   }
 
-  return (
-    isGranted(foregroundPermission?.status) ||
-    isGranted(backgroundPermission?.status)
+  return [foregroundPermission, backgroundPermission].every(
+    p => p && isGranted(p.status),
   );
 };
