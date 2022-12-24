@@ -9,7 +9,7 @@
     "check-types": "tsc",
     "ios": "yarn run start --ios",
     "lint": "eslint --format unix \"**/*.ts\" \"**/*.tsx\"",
-    "start": "yarn install --frozen-lockfile && expo start",
+    "start": "yarn install --frozen-lockfile && expo start --port 8081",
     "postinstall": "husky install && chmod ug+x .husky/* && patch-package",
     "test": "jest --forceExit -u"
   },
