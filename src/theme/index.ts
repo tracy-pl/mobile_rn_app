@@ -5,7 +5,7 @@ import sizes from './sizes';
 import { colors, nativeBaseThemeColors } from './colors';
 import { fonts } from './fonts';
 import { images } from './images';
-import { light, dark } from './shemas';
+import { light, dark, Schema } from './shemas';
 
 const THEME = {
   DEFAULT: 'default',
@@ -51,6 +51,7 @@ const nativeBaseTheme = extendTheme({
 
 export type ThemeEnum = typeof THEME[keyof typeof THEME];
 
+export type ThemeInterface = typeof theme & Schema;
 export * from './shemas';
 export {
   theme,

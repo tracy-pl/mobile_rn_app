@@ -9,9 +9,8 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
-import { DefaultTheme } from 'styled-components';
 
-import { Schema } from '~theme';
+import { ThemeInterface } from '~theme';
 import { Text } from '~components';
 import { ROUTES } from '~constants';
 
@@ -37,7 +36,7 @@ const getNavigationIcon = (color: string): { [key: string]: ReactElement } => {
 };
 
 const createBottomTabBarOptions =
-  (theme: DefaultTheme) =>
+  (theme: ThemeInterface) =>
   ({ route }: { route: RouteProp<ParamListBase> }) => ({
     // eslint-disable-next-line react/no-unstable-nested-components
     tabBarIcon: ({ color }: { color: string }) => {
