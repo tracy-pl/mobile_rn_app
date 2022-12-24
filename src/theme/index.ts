@@ -25,18 +25,27 @@ const theme = {
 
 const nativeBaseTheme = extendTheme({
   colors: nativeBaseThemeColors,
-  components: {
-    Button: {
-      // TODO: change to primary
-      // defaultProps: {
-      //   colorScheme: '',
-      // },
+  components: {},
+  fontConfig: {
+    [fonts.inter.regular]: {
+      600: {
+        normal: fonts.inter.bold,
+      },
+      500: {
+        normal: fonts.inter.semiBold,
+      },
+      400: {
+        normal: fonts.inter.medium,
+      },
+      300: {
+        normal: fonts.inter.regular,
+      },
     },
   },
   fonts: {
-    heading: 'openSans_regular',
-    body: 'openSans_regular',
-    mono: 'openSans_regular',
+    heading: fonts.inter.regular,
+    body: fonts.inter.regular,
+    mono: fonts.inter.regular,
   },
 });
 

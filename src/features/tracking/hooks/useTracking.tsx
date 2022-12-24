@@ -87,8 +87,8 @@ export const getLocation = async () => {
 };
 
 export default function useTracking() {
-  const { setCurrentLocation, clearTracking } = useActions();
-  const { trackingCoordinates, currentLocation } = useAppSelector(
+  const { setlastTrackedLocation, clearTracking } = useActions();
+  const { trackingCoordinates, lastTrackedLocation } = useAppSelector(
     state => state.tracking,
   );
   const [loading, setLoading] = useState(true);
@@ -96,9 +96,9 @@ export default function useTracking() {
   const [trackingError, setTrackingError] = useState(null);
 
   // useEffect(() => {
-  //   if (loading && inTracking && currentLocation) setLoading(false);
+  //   if (loading && inTracking && lastTrackedLocation) setLoading(false);
   //   else setLoading(true);
-  // }, [inTracking, currentLocation, loading]);
+  // }, [inTracking, lastTrackedLocation, loading]);
 
   const startTracking = useCallback(async () => {
     try {
@@ -130,9 +130,9 @@ export default function useTracking() {
   useEffect(() => {
     (async () => {
       try {
-        const _currentLocation = await getLocation();
+        const _lastTrackedLocation = await getLocation();
 
-        setCurrentLocation(getLatLng(_currentLocation));
+        setlastTrackedLocation(getLatLng(_lastTrackedLocation));
       } catch (e) {
         setTrackingError(e);
       }
@@ -141,7 +141,7 @@ export default function useTracking() {
     return () => {
       stopLocationUpdates();
     };
-  }, [setCurrentLocation, stopTracking]);
+  }, [setlastTrackedLocation, stopTracking]);
 
   return {
     trackingCoordinates,
@@ -150,6 +150,6 @@ export default function useTracking() {
     inTracking,
     trackingError,
     loading,
-    currentLocation,
+    lastTrackedLocation,
   };
 }

@@ -3,6 +3,7 @@ import { Input as LybInput } from 'native-base';
 
 const Input = styled(LybInput)`
   color: ${({ theme }) => theme.colors.text};
+  font-size: 16px;
 `;
 
 Input.defaultProps = {

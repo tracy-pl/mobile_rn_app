@@ -60,6 +60,11 @@ const LoginScreen: React.FC = () => {
             : errors?.email?.message || errors?.password?.message}
         </Text>
         <Center>
+          <Text onPress={() => NavigationService.navigate(ROUTES.SIGNUP)}>
+            Sign up
+          </Text>
+        </Center>
+        <Center>
           <Text
             onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}
           >

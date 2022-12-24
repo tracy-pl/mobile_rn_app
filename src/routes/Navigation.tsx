@@ -1,6 +1,9 @@
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from '@react-navigation/stack';
 import { useTheme } from 'styled-components';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useAppSelector } from '~hooks';
@@ -13,7 +16,8 @@ import {
   ForgotPasswordScreen,
   SignUpScreen,
 } from '~features/auth/screens';
-import TrackingScreen from '~features/tracking/screens/Tracking';
+// import TrackingScreen from '~features/tracking/screens/Tracking.screen';
+import PreTrackingScreen from '~features/tracking/screens/PreTracking.screen';
 
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
@@ -44,12 +48,19 @@ const RootNavigator = () => {
       <Stack.Screen name={ROUTES.MAIN} component={MainScreen} />
       <Stack.Screen name={ROUTES.MY_ROUTES} component={MyTracks} />
       <Stack.Screen
-        name={ROUTES.TRACKING}
-        component={TrackingScreen}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        options={{ tabBarStyle: { display: 'none' } }}
+        name={ROUTES.PRE_TRACKING}
+        component={PreTrackingScreen}
+        options={{ tabBarStyle: { display: 'none' } } as StackNavigationOptions}
       />
+      {/* <Stack.Screen */}
+      {/*  name={ROUTES.TRACKING} */}
+      {/*  component={TrackingScreen} */}
+      {/*  options={ */}
+      {/*    { */}
+      {/*      tabBarStyle: { display: 'none' }, */}
+      {/*    } as StackNavigationOptions */}
+      {/*  } */}
+      {/* /> */}
       <Stack.Screen name={ROUTES.SUBSCRIPTION} component={Subscription} />
       <Stack.Screen name={ROUTES.SETTINGS} component={Settings} />
     </RootStack.Navigator>

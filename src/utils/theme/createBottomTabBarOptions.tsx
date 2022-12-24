@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Center, Circle } from 'native-base';
-import { DefaultTheme } from 'styled-components';
 import { RouteProp } from '@react-navigation/core/lib/typescript/src/types';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ParamListBase } from '@react-navigation/routers';
@@ -10,9 +9,11 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
+import { DefaultTheme } from 'styled-components';
 
-import { ROUTES } from '~constants';
+import { Schema } from '~theme';
 import { Text } from '~components';
+import { ROUTES } from '~constants';
 
 const getNavigationIcon = (color: string): { [key: string]: ReactElement } => {
   return {
@@ -40,7 +41,7 @@ const createBottomTabBarOptions =
   ({ route }: { route: RouteProp<ParamListBase> }) => ({
     // eslint-disable-next-line react/no-unstable-nested-components
     tabBarIcon: ({ color }: { color: string }) => {
-      if (route.name === ROUTES.TRACKING) {
+      if (route.name === ROUTES.PRE_TRACKING) {
         return (
           <Circle mt={2} size="45px" bg="#2E9AFF">
             <AntDesign name="plus" size={25} color="white" />

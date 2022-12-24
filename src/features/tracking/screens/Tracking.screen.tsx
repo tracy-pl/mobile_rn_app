@@ -1,12 +1,12 @@
-// import { createRef } from 'react';
 import { useMemo, useRef } from 'react';
-import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Polyline } from 'react-native-maps';
 
 import { Button } from '~components';
-// import { ICoord } from '~types/models';
-import useTracking from '../hooks/useTracking';
 import { colors } from '~theme';
 import { getLatLng } from '~utils/common/location.utils';
+
+import { Map } from '../components/Map';
+import useTracking from '../hooks/useTracking';
 
 const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
@@ -20,7 +20,7 @@ const TrackingScreen = () => {
     startTracking,
     stopTracking,
     inTracking,
-    currentLocation,
+    lastTrackedLocation,
   } = useTracking();
 
   const handlePress = () => {
@@ -28,14 +28,14 @@ const TrackingScreen = () => {
     else stopTracking();
   };
   const region = useMemo(() => {
-    const { latitude, longitude } = currentLocation || {};
+    const { latitude, longitude } = lastTrackedLocation || {};
     return {
       latitude,
       longitude,
       latitudeDelta,
       longitudeDelta,
     };
-  }, [currentLocation]);
+  }, [lastTrackedLocation]);
 
   // TODO: fix point tracking
   // now we recreate region when location updates
@@ -61,21 +61,19 @@ const TrackingScreen = () => {
 
   return (
     <>
-      <MapView
-        ref={mapView}
+      <Map
+        mapRef={mapView}
         // TODO: fix
         followsUserLocation
         region={region}
         // onMapReady={onMapReady}
         showsUserLocation
-        provider={PROVIDER_GOOGLE}
-        style={{ flex: 1 }}
       >
         <Polyline
           coordinates={trackingCoordinates.map(getLatLng)}
           strokeColor={colors.blue}
         />
-      </MapView>
+      </Map>
       <Button onPress={handlePress}>{inTracking ? 'STOP' : 'START'}</Button>
     </>
   );

@@ -13,7 +13,7 @@ const fonts = {
   inter: {
     regular: 'inter_regular',
     medium: 'inter_medium',
-    semiBold: 'inter_semiBild',
+    semiBold: 'inter_semiBold',
     bold: 'inter_bold',
   },
 };
