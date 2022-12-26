@@ -29,12 +29,16 @@ export const PasswordInput = ({ onChangeText, value, onBlur, placeholder }) => {
       }}
       InputRightElement={
         <Pressable onPress={() => setShow(!show)}>
-          <Icon
-            as={<MaterialIcons name={show ? 'visibility' : 'visibility-off'} />}
-            size={5}
-            mr="2"
-            color="muted.400"
-          />
+          {value && (
+            <Icon
+              as={
+                <MaterialIcons name={show ? 'visibility' : 'visibility-off'} />
+              }
+              size={5}
+              mr="2"
+              color="muted.400"
+            />
+          )}
         </Pressable>
       }
     />
