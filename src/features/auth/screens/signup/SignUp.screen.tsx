@@ -42,8 +42,8 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start' }}>
-      <View style={{ paddingHorizontal: 12 }}>
+    <SafeAreaView>
+      <View style={{ paddingHorizontal: 12, height: '45%' }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
           <HStack space={2}>
             <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
@@ -53,36 +53,45 @@ const SignUpScreen: React.FC = () => {
         <ImageBackground
           source={require('../../../../../assets/images/signup-screen-img.png')}
           resizeMode="cover"
-          style={{ width: 268, height: 268, marginTop: -20, zIndex: -1 }}
+          style={{
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            position: 'absolute',
+            left: -20,
+            top: 20,
+          }}
         />
       </View>
-      <AuthContainer title="Zarejestruj się ✍️">
-        <InputField
-          name="email"
-          placeholder="Email Address"
-          control={control}
-        />
-        <InputField name="password" placeholder="Hasło" control={control} />
-        <InputField name="name" placeholder="Imię" control={control} />
-        <RegisterButton
-          onPress={handleSubmit(onSubmit)}
-          isLoading={loading}
-          isDisabled={disabled}
-        >
-          <ButtonText>Zarejestruj się</ButtonText>
-        </RegisterButton>
-        <Text>
-          {loading
-            ? 'Loading'
-            : errors?.email?.message || errors?.password?.message}
-        </Text>
-        <Center>
-          <Text style={{ textAlign: 'center' }}>
-            By signing up you agree to our <Terms>Privacy Policy</Terms> and{' '}
-            <Terms>Terms of Use</Terms>
+      <View style={{ height: '55%' }}>
+        <AuthContainer title="Zarejestruj się ✍️">
+          <InputField
+            name="email"
+            placeholder="Email Address"
+            control={control}
+          />
+          <InputField name="password" placeholder="Hasło" control={control} />
+          <InputField name="name" placeholder="Imię" control={control} />
+          <RegisterButton
+            onPress={handleSubmit(onSubmit)}
+            isLoading={loading}
+            isDisabled={disabled}
+          >
+            <ButtonText>Zarejestruj się</ButtonText>
+          </RegisterButton>
+          <Text>
+            {loading
+              ? 'Loading'
+              : errors?.email?.message || errors?.password?.message}
           </Text>
-        </Center>
-      </AuthContainer>
+          <Center>
+            <Text style={{ textAlign: 'center' }}>
+              By signing up you agree to our <Terms>Privacy Policy</Terms> and{' '}
+              <Terms>Terms of Use</Terms>
+            </Text>
+          </Center>
+        </AuthContainer>
+      </View>
     </SafeAreaView>
   );
 };
