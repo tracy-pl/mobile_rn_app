@@ -3,10 +3,6 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
     "moduleResolution": "node",
     "module": "commonjs",
     "noEmit": true,
@@ -17,14 +13,19 @@
     "strict": true,
     "allowJs": true,
     "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "~*": [
         "./src/*"
       ]
     }
   },
+  "lib": [
+    "dom",
+    "esnext"
+  ],
   "include": ["src/**/*", "./App.tsx"],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }

@@ -18,6 +18,7 @@
       "**/*"
     ],
     "ios": {
+      "supportsTablet": true,
       "infoPlist": {
         "NSLocationUsageDescription":"App requires location even when the App is backgrounded.",
         "NSLocationWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
@@ -35,7 +36,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "permissions":["ACCESS_COARSE_LOCATION","ACCESS_FINE_LOCATION","ACCESS_BACKGROUND_LOCATION"]
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

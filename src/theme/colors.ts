@@ -8,7 +8,7 @@ const colors = {
 };
 
 const nativeBaseThemeColors = {
-  primary: {},
+  primary: colors.blue,
 };
 
 export { colors, nativeBaseThemeColors };

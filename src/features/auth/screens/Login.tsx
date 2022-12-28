@@ -30,7 +30,7 @@ const LoginScreen: React.FC = () => {
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
     // eslint-disable-next-line prettier/prettier
-    [loading, errors?.email?.message]
+    [loading, errors?.email?.message],
   );
 
   // TODO: add real API call
@@ -60,6 +60,11 @@ const LoginScreen: React.FC = () => {
             ? 'Loading'
             : errors?.email?.message || errors?.password?.message}
         </Text>
+        <Center>
+          <Text onPress={() => NavigationService.navigate(ROUTES.SIGNUP)}>
+            Sign up
+          </Text>
+        </Center>
         <Center>
           <Text
             onPress={() => NavigationService.navigate(ROUTES.FORGET_PASSWORD)}

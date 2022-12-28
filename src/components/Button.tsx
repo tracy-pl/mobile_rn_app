@@ -1,6 +1,15 @@
-import { Button as LybButton } from 'native-base';
+import React from 'react';
 import styled from 'styled-components/native';
+import { Button as LybButton, IButtonProps } from 'native-base';
 
-const Button = styled(LybButton)``;
+const StyledButton = styled(LybButton)`
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 16px;
+  height: 64px;
+`;
+
+const Button: React.FC<IButtonProps> = props => (
+  <StyledButton {...props} _text={{ fontSize: 18, fontWeight: 600 }} />
+);
 
 export default Button;

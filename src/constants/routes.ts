@@ -9,6 +9,7 @@ export const ROUTES = {
   SIGNUP: 'signup',
   MAIN: 'Trasy',
   MY_ROUTES: 'Moje trasy',
+  PRE_TRACKING: 'Pre-tracking',
   TRACKING: 'tracking',
   SUBSCRIPTION: 'Subskrypcja',
   SETTINGS: 'Ustawienia',

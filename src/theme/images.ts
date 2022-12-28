@@ -1,8 +1,7 @@
 import { Asset } from 'expo-asset';
-import Logo from '../../assets/images/logo.svg';
 
 const svgs = {
-  logo: Logo,
+  logo: require('../../assets/images/logo.svg'),
 };
 
 const images: { [key: string]: string } = {

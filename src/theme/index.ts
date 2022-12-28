@@ -5,7 +5,9 @@ import sizes from './sizes';
 import { colors, nativeBaseThemeColors } from './colors';
 import { fonts } from './fonts';
 import { images } from './images';
-import { light, dark } from './shemas';
+import { light, dark, Schema } from './shemas';
+
+import { InputStyles } from '~components/Input';
 
 const THEME = {
   DEFAULT: 'default',
@@ -26,22 +28,34 @@ const theme = {
 const nativeBaseTheme = extendTheme({
   colors: nativeBaseThemeColors,
   components: {
-    Button: {
-      // TODO: change to primary
-      // defaultProps: {
-      //   colorScheme: '',
-      // },
+    Input: InputStyles,
+  },
+  fontConfig: {
+    [fonts.inter.regular]: {
+      600: {
+        normal: fonts.inter.bold,
+      },
+      500: {
+        normal: fonts.inter.semiBold,
+      },
+      400: {
+        normal: fonts.inter.medium,
+      },
+      300: {
+        normal: fonts.inter.regular,
+      },
     },
   },
   fonts: {
-    heading: 'openSans_regular',
-    body: 'openSans_regular',
-    mono: 'openSans_regular',
+    heading: fonts.inter.regular,
+    body: fonts.inter.regular,
+    mono: fonts.inter.regular,
   },
 });
 
 export type ThemeEnum = typeof THEME[keyof typeof THEME];
 
+export type ThemeInterface = typeof theme & Schema;
 export * from './shemas';
 export {
   theme,

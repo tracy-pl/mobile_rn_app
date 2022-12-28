@@ -11,26 +11,26 @@ enum TrackingStatus {
 interface TrackingState {
   trackingCoordinates: ICoord[];
   trackingStatus: TrackingStatus;
-  currentLocation: ICoord;
+  lastTrackedLocation: ICoord;
 }
 
 const initialState: TrackingState = {
   trackingStatus: TrackingStatus.NOT_STARTED,
   trackingCoordinates: [],
-  currentLocation: null,
+  lastTrackedLocation: null,
 };
 
 const trackingSlice = createSlice({
   name: 'tracking',
   initialState,
   reducers: {
-    setCurrentLocation: (state, action: PayloadAction<ICoord>) => {
-      state.currentLocation = action.payload;
+    setlastTrackedLocation: (state, action: PayloadAction<ICoord>) => {
+      state.lastTrackedLocation = action.payload;
     },
     pushLocation: (state, action: PayloadAction<ICoord>) => {
       state.trackingCoordinates.push(action.payload);
       // NOTE: can be removed
-      state.currentLocation = action.payload;
+      state.lastTrackedLocation = action.payload;
     },
     clearTracking(state) {
       state.trackingCoordinates = [];

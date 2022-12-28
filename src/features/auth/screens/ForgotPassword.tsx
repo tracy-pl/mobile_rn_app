@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Center } from 'native-base';
 
 import { AuthContainer, InputField } from '../components';
-import { Button, Text } from '~components';
+import { Button, Container, Text } from '~components';
 import {
   getResolver,
   forgetPasswordSchema,
@@ -38,22 +38,28 @@ const ForgotPasswordScreen: React.FC = () => {
   }, []);
 
   return (
-    <AuthContainer title="Forget password">
-      <InputField name="email" placeholder="Email Address" control={control} />
-      <Button
-        onPress={handleSubmit(onSubmit)}
-        isLoading={loading}
-        isDisabled={disabled}
-      >
-        Send
-      </Button>
-      <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
-      <Center>
-        <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
-          Back to login
-        </Text>
-      </Center>
-    </AuthContainer>
+    <Container>
+      <AuthContainer title="Forget password">
+        <InputField
+          name="email"
+          placeholder="Email Address"
+          control={control}
+        />
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          isLoading={loading}
+          isDisabled={disabled}
+        >
+          Send
+        </Button>
+        <Text>{loading ? 'Loading' : errors?.email?.message}</Text>
+        <Center>
+          <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
+            Back to login
+          </Text>
+        </Center>
+      </AuthContainer>
+    </Container>
   );
 };
 

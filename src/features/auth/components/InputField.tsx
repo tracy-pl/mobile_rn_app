@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import { Control, Controller } from 'react-hook-form';
+import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
+
 import { Input } from '~components';
 import { PasswordInput } from '~components/PasswordInput';
 import { colors, fonts } from '~theme';
@@ -16,7 +18,11 @@ const InputField: React.FC<IInputFieldProps> = ({
   control,
 }) => {
   const renderInput = useCallback(
-    (onChange: () => void, value: string, onBlur: () => void) => {
+    (
+      onChange: ControllerRenderProps['onChange'],
+      value: ControllerRenderProps['value'],
+      onBlur: ControllerRenderProps['onBlur'],
+    ) => {
       switch (name) {
         case 'password':
           return (
@@ -51,17 +57,16 @@ const InputField: React.FC<IInputFieldProps> = ({
           );
       }
     },
-    // eslint-disable-next-line prettier/prettier
-    [placeholder, name]
+    [placeholder, name],
   );
 
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, onBlur, value } }) => {
-        return renderInput(onChange, value, onBlur);
-      }}
+      render={({ field: { onChange, onBlur, value } }) =>
+        renderInput(onChange, value, onBlur)
+      }
     />
   );
 };
