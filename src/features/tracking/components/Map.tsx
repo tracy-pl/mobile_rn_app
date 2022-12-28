@@ -93,9 +93,16 @@ export const Map: React.FC<IMap> = props => {
     <MapView
       {...props}
       {...additionalProps}
-      style={{ flex: 1 }}
+      style={{
+        flex: 1,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: 'rgba(3, 27, 54, 0.1)',
+      }}
       showsUserLocation
       provider={PROVIDER_GOOGLE}
+      customMapStyle={config}
     >
       {props.children}
     </MapView>
