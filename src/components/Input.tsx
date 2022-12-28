@@ -6,6 +6,8 @@ const Input = styled(LybInput)`
   font-size: 16px;
 `;
 
+export const InputStyles = {};
+
 Input.defaultProps = {
   autoCapitalize: 'none',
 };
