@@ -68,5 +68,6 @@ module.exports = {
     'react/require-default-props': 0,
     'camelcase': 0,
     'react/destructuring-assignment': 0,
+    '@typescript-eslint/no-namespace': 0,
   },
 };

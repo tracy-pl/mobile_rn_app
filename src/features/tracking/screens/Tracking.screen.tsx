@@ -68,7 +68,6 @@ const TrackingScreen = () => {
   //   }
   // }, [trackingCoordinates]);
 
-  // @ts-ignore
   return (
     <>
       <Map
