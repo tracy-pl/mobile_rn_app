@@ -7,6 +7,8 @@ import { fonts } from './fonts';
 import { images } from './images';
 import { light, dark, Schema } from './shemas';
 
+import { InputStyles } from '~components/Input';
+
 const THEME = {
   DEFAULT: 'default',
   LIGHT: 'light',
@@ -25,7 +27,9 @@ const theme = {
 
 const nativeBaseTheme = extendTheme({
   colors: nativeBaseThemeColors,
-  components: {},
+  components: {
+    Input: InputStyles,
+  },
   fontConfig: {
     [fonts.inter.regular]: {
       600: {
