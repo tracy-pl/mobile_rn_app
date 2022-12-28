@@ -29,6 +29,7 @@ const LoginScreen: React.FC = () => {
   const [loading] = useState(false);
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
+    // eslint-disable-next-line prettier/prettier
     [loading, errors?.email?.message],
   );
 

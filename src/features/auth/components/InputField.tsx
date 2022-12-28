@@ -4,6 +4,7 @@ import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
 
 import { Input } from '~components';
 import { PasswordInput } from '~components/PasswordInput';
+import { colors, fonts } from '~theme';
 
 interface IInputFieldProps {
   name: string;
@@ -40,8 +41,18 @@ const InputField: React.FC<IInputFieldProps> = ({
               onChangeText={onChange}
               value={value}
               onBlur={onBlur}
+              _focus={{
+                borderColor: colors.blue2,
+                backgroundColor: colors.white,
+              }}
               placeholder={placeholder}
-              style={{ height: 64 }}
+              style={{
+                height: 64,
+                fontFamily: fonts.inter.medium,
+                fontWeight: '500',
+                paddingLeft: 24,
+                fontSize: 16,
+              }}
             />
           );
       }
