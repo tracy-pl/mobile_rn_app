@@ -47,21 +47,10 @@ const RootNavigator = () => {
     <RootStack.Navigator screenOptions={createBottomTabBarOptions(theme)}>
       <Stack.Screen name={ROUTES.MAIN} component={MainScreen} />
       <Stack.Screen name={ROUTES.MY_ROUTES} component={MyTracks} />
-
       <Stack.Screen
         name={ROUTES.PRE_TRACKING}
         component={PreTrackingScreen}
         options={{ tabBarStyle: { display: 'none' } } as StackNavigationOptions}
-      />
-      <Stack.Screen
-        name={ROUTES.TRACKING}
-        component={TrackingScreen}
-        options={
-          {
-            headerShown: false,
-            tabBarStyle: { display: 'none' },
-          } as StackNavigationOptions
-        }
       />
       <Stack.Screen name={ROUTES.SUBSCRIPTION} component={Subscription} />
       <Stack.Screen name={ROUTES.SETTINGS} component={Settings} />
@@ -80,6 +69,17 @@ const App = () => {
         {/* TODO: add loading screen and auth logic */}
         <Stack.Screen name={STACKS.AUTH} component={AuthNavigator} />
         <Stack.Screen name={STACKS.ROOT} component={RootNavigator} />
+        {/* TODO: move later */}
+        <Stack.Screen
+          name={ROUTES.TRACKING}
+          component={TrackingScreen}
+          options={
+            {
+              headerShown: false,
+              tabBarStyle: { display: 'none' },
+            } as StackNavigationOptions
+          }
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

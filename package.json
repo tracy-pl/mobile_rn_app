@@ -104,7 +104,6 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,ts,tsx}": "yarn run lint",
-    "**/*.{ts,tsx}": "tsc-files --noEmit"
+    "**/*.{js,ts,tsx}": "yarn run lint"
   }
 }
