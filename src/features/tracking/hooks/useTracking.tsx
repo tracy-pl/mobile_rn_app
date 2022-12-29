@@ -12,25 +12,31 @@ const TASK_FETCH_LOCATION = 'TASK_FETCH_LOCATION';
 TaskManager.defineTask(
   TASK_FETCH_LOCATION,
   async ({
-    data: { locations },
+    data: { locations = [] },
     error,
   }: TaskManager.TaskManagerTaskBody<{
     locations?: Location.LocationObject[];
   }>) => {
-    if (error) {
+    if (error || !locations.length) {
       console.error(error);
       return;
     }
-    locations?.forEach(location => {
-      // dispatch action to add new coord
+
+    try {
+      const coordinates = locations.map(location => ({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        timestamp: location.timestamp,
+      }));
+      store.dispatch(trackingActions.pushLocation(coordinates));
       store.dispatch(
-        trackingActions.pushLocation({
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          timestamp: location.timestamp,
-        }),
+        trackingActions.setLastTrackedLocation(
+          coordinates[coordinates.length - 1],
+        ),
       );
-    });
+    } catch (e) {
+      console.error(e);
+    }
   },
 );
 
@@ -43,10 +49,10 @@ export const stopLocationUpdates = async () => {
 };
 
 export const startLocationUpdates = async () => {
-  // check if it is already running
-  if (await Location.hasStartedLocationUpdatesAsync(TASK_FETCH_LOCATION)) {
-    await stopLocationUpdates();
-  }
+  // // check if it is already running
+  // if (await Location.hasStartedLocationUpdatesAsync(TASK_FETCH_LOCATION)) {
+  //   await stopLocationUpdates();
+  // }
 
   try {
     await Location.startLocationUpdatesAsync(TASK_FETCH_LOCATION, {
@@ -87,18 +93,12 @@ export const getLocation = async () => {
 };
 
 export default function useTracking() {
-  const { setlastTrackedLocation, clearTracking } = useActions();
-  const { trackingCoordinates, lastTrackedLocation } = useAppSelector(
-    state => state.tracking,
-  );
+  const { setLastTrackedLocation, clearTracking } = useActions();
+  const { trackingCoordinates, lastTrackedLocation, totalDistance, startedAt } =
+    useAppSelector(state => state.tracking);
   const [loading, setLoading] = useState(true);
   const [inTracking, setInTracking] = useState(false);
   const [trackingError, setTrackingError] = useState(null);
-
-  // useEffect(() => {
-  //   if (loading && inTracking && lastTrackedLocation) setLoading(false);
-  //   else setLoading(true);
-  // }, [inTracking, lastTrackedLocation, loading]);
 
   const startTracking = useCallback(async () => {
     try {
@@ -128,20 +128,10 @@ export default function useTracking() {
   }, [clearTracking]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const _lastTrackedLocation = await getLocation();
-
-        setlastTrackedLocation(getLatLng(_lastTrackedLocation));
-      } catch (e) {
-        setTrackingError(e);
-      }
-    })();
-
-    return () => {
-      stopLocationUpdates();
-    };
-  }, [setlastTrackedLocation, stopTracking]);
+    getLocation()
+      .then(location => setLastTrackedLocation(getLatLng(location)))
+      .catch(setTrackingError);
+  }, [setLastTrackedLocation]);
 
   return {
     trackingCoordinates,
@@ -151,5 +141,7 @@ export default function useTracking() {
     trackingError,
     loading,
     lastTrackedLocation,
+    totalDistance,
+    startedAt,
   };
 }

@@ -16,11 +16,11 @@ import {
   ForgotPasswordScreen,
   SignUpScreen,
 } from '~features/auth/screens';
-// import TrackingScreen from '~features/tracking/screens/Tracking.screen';
 import PreTrackingScreen from '~features/tracking/screens/PreTracking.screen';
 
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
+import TrackingScreen from '~features/tracking/screens/Tracking.screen';
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();
@@ -52,15 +52,6 @@ const RootNavigator = () => {
         component={PreTrackingScreen}
         options={{ tabBarStyle: { display: 'none' } } as StackNavigationOptions}
       />
-      {/* <Stack.Screen */}
-      {/*  name={ROUTES.TRACKING} */}
-      {/*  component={TrackingScreen} */}
-      {/*  options={ */}
-      {/*    { */}
-      {/*      tabBarStyle: { display: 'none' }, */}
-      {/*    } as StackNavigationOptions */}
-      {/*  } */}
-      {/* /> */}
       <Stack.Screen name={ROUTES.SUBSCRIPTION} component={Subscription} />
       <Stack.Screen name={ROUTES.SETTINGS} component={Settings} />
     </RootStack.Navigator>
@@ -78,6 +69,17 @@ const App = () => {
         {/* TODO: add loading screen and auth logic */}
         <Stack.Screen name={STACKS.AUTH} component={AuthNavigator} />
         <Stack.Screen name={STACKS.ROOT} component={RootNavigator} />
+        {/* TODO: move later */}
+        <Stack.Screen
+          name={ROUTES.TRACKING}
+          component={TrackingScreen}
+          options={
+            {
+              headerShown: false,
+              tabBarStyle: { display: 'none' },
+            } as StackNavigationOptions
+          }
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

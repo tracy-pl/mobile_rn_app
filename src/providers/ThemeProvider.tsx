@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { ColorSchemeName, useColorScheme } from 'react-native';
+import { StorageManager, ColorMode, NativeBaseProvider } from 'native-base';
 import { ThemeProvider as SCThemeProvider } from 'styled-components/native';
-import { ColorMode, NativeBaseProvider, StatusBar } from 'native-base';
-import type { StorageManager } from 'native-base';
 
 import { useActions, useAppSelector } from '~hooks';
 import { getTheme } from '~redux/app';
@@ -36,11 +36,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         config={{ theme: nativeBaseTheme }}
         colorModeManager={colorModeManager}
       >
-        <StatusBar
-          barStyle={
-            currentScheme === THEME.LIGHT ? 'dark-content' : 'light-content'
-          }
-        />
+        <StatusBar style={currentScheme} />
         {children}
       </NativeBaseProvider>
     </SCThemeProvider>

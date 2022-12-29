@@ -1,9 +1,9 @@
 // @ts-ignore
-import { API_BASE_URL as ApiBaseUrl, NODE_ENV } from '@env';
-import { Platform } from 'react-native';
+import { API_BASE_URL as ApiBaseUrl } from '@env';
+import { IS_ANDROID, IS_DEV_ENV } from './env';
 
 const API_BASE_URL =
-  Platform.OS === 'android' && NODE_ENV === 'development'
+  IS_ANDROID && IS_DEV_ENV
     ? ApiBaseUrl.replace('localhost', '10.0.2.2')
     : ApiBaseUrl;
 

@@ -1,11 +1,11 @@
-import * as Location from 'expo-location';
+import React, { useEffect } from 'react';
 import { Linking } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import * as Location from 'expo-location';
 
 import Button from '~components/Button';
 import Text from '~components/Text';
+
 import { isLocationPermissionGranted } from '~services/location';
-import showToast from '~utils/common/showToast';
 
 import packageJson from '../../package.json';
 
@@ -66,23 +66,10 @@ const NewForm: React.FC<ILocationPermissionFormProps> = ({
 }) => {
   const [foreground, requestForeground] = Location.useForegroundPermissions();
   const [background, requestBackground] = Location.useBackgroundPermissions();
-  const [isUserInformed, setIsUserInformed] = useState(false);
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      if (!isUserInformed || !foreground.granted || !background.granted) {
-        showToast({
-          type: 'error',
-          topText: 'Location permission denied',
-          bottomText: '',
-        });
-        setIsUserInformed(true);
-        isLocationPermissionGranted();
-      }
-    }, 5000);
-
-    return () => clearInterval(id);
-  }, [foreground, background, isUserInformed]);
+    isLocationPermissionGranted().then(console.info);
+  }, []);
 
   // In this example, we follow a couple of rules for the permissions
   //  1. Foreground permission needs to be granted before asking background permission
@@ -149,29 +136,10 @@ const NewForm: React.FC<ILocationPermissionFormProps> = ({
             Grant permission through settings
           </Button>
         )}
-      {btnText && (
-        <Button
-          disabled={
-            !isUserInformed && (!background?.granted || !foreground?.granted)
-          }
-          onPress={onSubmit}
-        >
-          {btnText}
-        </Button>
-      )}
+      {btnText && <Button onPress={onSubmit}>{btnText}</Button>}
       <Text>App version: {packageJson.version}</Text>
     </>
   );
 };
-
-NewForm.defaultProps = {
-  btnText: '',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onSubmit: () => {},
-};
-
-// LocationPermissionForm.defaultProps = {
-//   disabled: false,
-// };
 
 export default NewForm;
