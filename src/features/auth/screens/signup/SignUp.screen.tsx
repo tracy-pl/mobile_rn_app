@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,7 +12,7 @@ import {
 } from '../../utils/validation';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
-import { ButtonText, Login, RegisterButton, Terms } from './styles';
+import { ButtonText, ImageView, Login, RegisterButton, Terms } from './styles';
 import { colors } from '~theme';
 
 const SignUpScreen: React.FC = () => {
@@ -34,7 +34,7 @@ const SignUpScreen: React.FC = () => {
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
     // eslint-disable-next-line prettier/prettier
-    [loading, errors?.email?.message]
+    [loading, errors?.email?.message],
   );
 
   const onSubmit = useCallback((body: ISignUpFormSchema) => {
@@ -50,17 +50,8 @@ const SignUpScreen: React.FC = () => {
           </HStack>
           <Login>Zaloguj się</Login>
         </Text>
-        <ImageBackground
+        <ImageView
           source={require('../../../../../assets/images/signup-screen-img.png')}
-          resizeMode="cover"
-          style={{
-            width: '100%',
-            height: '100%',
-            zIndex: -1,
-            position: 'absolute',
-            left: -20,
-            top: 20,
-          }}
         />
       </View>
       <View style={{ height: '55%' }}>
