@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-      - develop
+      - prod
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -11,20 +11,21 @@ jobs:
       - name: 🏗 Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.x
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: ./node_modules
           key: modules-${{ hashFiles('yarn.lock') }}
-      - name: 🏗 Setup Expo
+      - name: 🏗 Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
           expo-version: latest
+          eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
       - name: 🏗 Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --ignore-scripts
-      - name: 🚀 Publish app
-        run: expo publish --non-interactive
+      - name: 🚀 Build app
+        run: eas build --non-interactive
