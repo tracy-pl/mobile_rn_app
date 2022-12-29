@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "tracy_ts",
+    "name": "tracy",
     "slug": "mobile-rn-app",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icons/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -33,7 +33,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "permissions": [
@@ -43,9 +43,6 @@
         "ACCESS_FINE_LOCATION"
       ],
       "package": "com.tracy_app.mobilernapp"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
       "config": "metro.config.js",
