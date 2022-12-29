@@ -54,7 +54,6 @@ const trackingSlice = createSlice({
       state.startedAt = null;
       state.trackingStatus = TrackingStatus.NOT_STARTED;
       state.trackingCoordinates = [];
-      state.lastTrackedLocation = null;
       state.totalDistance = 0;
     },
   },
