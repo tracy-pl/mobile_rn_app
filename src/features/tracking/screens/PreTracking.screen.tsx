@@ -17,14 +17,17 @@ const PreTrackingScreen = () => {
   const { startTracking, lastTrackedLocation } = useTracking();
 
   const region = useMemo(() => {
-    const { latitude, longitude } = lastTrackedLocation || {};
+    if (!lastTrackedLocation) return null;
+
+    const { latitude, longitude } = lastTrackedLocation;
     return {
       latitude,
       longitude,
       latitudeDelta,
       longitudeDelta,
     };
-  }, [lastTrackedLocation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastTrackedLocation?.longitude, lastTrackedLocation?.latitude]);
 
   const handlePress = async () => {
     await startTracking();
