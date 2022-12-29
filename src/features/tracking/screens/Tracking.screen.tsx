@@ -21,20 +21,16 @@ const TrackingScreen = () => {
   const mapView = useRef<MapView>();
   const {
     trackingCoordinates,
-    startTracking,
     stopTracking,
     inTracking,
     lastTrackedLocation,
+    totalDistance,
+    // startedAt,
   } = useTracking();
 
   const handlePress = () => {
-    if (!inTracking) {
-      startTracking();
-      NavigationService.navigate(ROUTES.MAIN); // temporary
-    } else {
-      stopTracking();
-      NavigationService.navigate(ROUTES.MAIN); // temporary
-    }
+    NavigationService.navigate(ROUTES.MAIN);
+    stopTracking();
   };
   const region = useMemo(() => {
     const { latitude, longitude } = lastTrackedLocation || {};
@@ -45,7 +41,9 @@ const TrackingScreen = () => {
       longitudeDelta,
     };
   }, [lastTrackedLocation]);
-
+  const totalDistanceLabel = useMemo(() => {
+    return `${Math.round(totalDistance * 100) / 100} km`;
+  }, [totalDistance]);
   // TODO: fix point tracking
   // now we recreate region when location updates
   // const onMapReady = useCallback(() => {
@@ -102,7 +100,9 @@ const TrackingScreen = () => {
           }}
         >
           <Text style={{ opacity: 0.5, lineHeight: 19 }}>Przebyta trasa</Text>
-          <Text style={{ fontSize: 18, lineHeight: 23 }}>4,0 km</Text>
+          <Text style={{ fontSize: 18, lineHeight: 23 }}>
+            {totalDistanceLabel}
+          </Text>
         </View>
       </Modal>
 

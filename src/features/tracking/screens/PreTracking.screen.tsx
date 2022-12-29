@@ -14,7 +14,7 @@ const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
 
 const PreTrackingScreen = () => {
-  const { lastTrackedLocation } = useTracking();
+  const { startTracking, lastTrackedLocation } = useTracking();
 
   const region = useMemo(() => {
     const { latitude, longitude } = lastTrackedLocation || {};
@@ -26,7 +26,9 @@ const PreTrackingScreen = () => {
     };
   }, [lastTrackedLocation]);
 
-  const handlePress = () => {
+  const handlePress = async () => {
+    await startTracking();
+
     NavigationService.navigate(ROUTES.TRACKING);
   };
 
