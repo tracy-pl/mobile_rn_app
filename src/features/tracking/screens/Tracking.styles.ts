@@ -2,17 +2,18 @@ import styled from 'styled-components';
 import { View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Button } from '~components';
+import { colors } from '~theme';
 
 export namespace S {
   export const FinishButton = styled(Button)`
-    background-color: #ff3b30;
+    background-color: ${colors.red};
     width: 95%;
     position: absolute;
-    bottom: 40px;
+    bottom: 25px;
   `;
 
   export const Modal = styled(View)`
-    background-color: #fff;
+    background-color: ${colors.white};
     width: 282px;
     height: 98px;
     position: absolute;
@@ -26,6 +27,7 @@ export namespace S {
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
+    padding: 12px;
   `;
 
   export const TextContainer = styled(View)`
@@ -35,12 +37,16 @@ export namespace S {
   `;
 
   export const TopText = styled(Text)`
-    opacity: 0.5;
+    font-weight: 500;
+    font-size: 15px;
+    opacity: 0.4;
     line-height: 19px;
+    margin-bottom: 5px;
   `;
 
   export const BottomText = styled(Text)`
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 19px;
     line-height: 23px;
   `;
 

@@ -8,7 +8,7 @@ import { Container } from '~components';
 
 import useTracking from '../hooks/useTracking';
 import { Map } from '../components/Map';
-import { S } from '~features/tracking/screens/PreTracking.styles';
+import { S } from './PreTracking.styles';
 
 const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
@@ -35,7 +35,7 @@ const PreTrackingScreen = () => {
   };
 
   return (
-    <Container>
+    <S.OuterContainer>
       <S.TopContainer>
         <View>
           <S.TopText>Dodaj trasę</S.TopText>
@@ -46,10 +46,12 @@ const PreTrackingScreen = () => {
         </S.CloseButton>
       </S.TopContainer>
       <Map region={region} />
-      <S.BottomButton onPress={handlePress}>
-        Rozpocznij śledzenie
-      </S.BottomButton>
-    </Container>
+      <S.Center>
+        <S.BottomButton onPress={handlePress}>
+          Rozpocznij śledzenie
+        </S.BottomButton>
+      </S.Center>
+    </S.OuterContainer>
   );
 };
 

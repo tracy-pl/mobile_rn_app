@@ -7,7 +7,7 @@ import { Map } from '../components/Map';
 import useTracking from '../hooks/useTracking';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
-import { S } from '~features/tracking/screens/Tracking.styles';
+import { S } from './Tracking.styles';
 
 const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
@@ -89,7 +89,6 @@ const TrackingScreen = () => {
           <S.TopText>Przebyta trasa</S.TopText>
           <S.BottomText>4,0 km</S.BottomText>
         </S.TextContainer>
-        s
       </S.Modal>
       <S.Center>
         <S.FinishButton onPress={handlePress}>

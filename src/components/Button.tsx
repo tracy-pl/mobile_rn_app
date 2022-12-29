@@ -9,7 +9,7 @@ const StyledButton = styled(LybButton)`
 `;
 
 const Button: React.FC<IButtonProps> = props => (
-  <StyledButton {...props} _text={{ fontSize: 18, fontWeight: 600 }} />
+  <StyledButton {...props} _text={{ fontSize: 16, fontWeight: 500 }} />
 );
 
 export default Button;
