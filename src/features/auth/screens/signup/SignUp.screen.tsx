@@ -42,8 +42,8 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <View style={{ paddingHorizontal: 12, height: '45%' }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ paddingHorizontal: 12, flex: 2 }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
           <HStack space={2}>
             <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
@@ -54,7 +54,7 @@ const SignUpScreen: React.FC = () => {
           source={require('../../../../../assets/images/signup-screen-img.png')}
         />
       </View>
-      <View style={{ height: '55%' }}>
+      <View style={{ flex: 3 }}>
         <AuthContainer title="Zarejestruj się ✍️">
           <InputField
             name="email"

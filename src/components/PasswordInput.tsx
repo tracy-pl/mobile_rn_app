@@ -15,7 +15,7 @@ export const PasswordInput: React.FC<IInputProps> = props => {
       borderRadius="xl"
       mb={4}
       type={show ? 'text' : 'password'}
-      style={{ height: 64 }}
+      style={{ height: 64, paddingLeft: 24 }}
       _focus={{
         borderColor: colors.blue2,
         backgroundColor: colors.white,
