@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground, View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
-
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ImageBackground, View, Text } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Center, ChevronLeftIcon, HStack } from 'native-base';
+
+import { Container } from '~components';
 import { AuthContainer, InputField } from '../../components';
 import {
   getResolver,
@@ -33,8 +33,7 @@ const SignUpScreen: React.FC = () => {
 
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
-    // eslint-disable-next-line prettier/prettier
-    [loading, errors?.email?.message]
+    [loading, errors?.email?.message],
   );
 
   const onSubmit = useCallback((body: ISignUpFormSchema) => {
@@ -42,8 +41,8 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <View style={{ paddingHorizontal: 12, height: '45%' }}>
+    <Container>
+      <View style={{ height: '45%' }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
           <HStack space={2}>
             <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
@@ -92,7 +91,7 @@ const SignUpScreen: React.FC = () => {
           </Center>
         </AuthContainer>
       </View>
-    </SafeAreaView>
+    </Container>
   );
 };
 
