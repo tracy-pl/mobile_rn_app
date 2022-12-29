@@ -18,17 +18,21 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
-        "NSLocationUsageDescription": "App requires location even when the App is backgrounded.",
-        "NSLocationWhenInUseUsageDescription": "App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysUsageDescription": "App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is backgrounded.",
+        "NSLocationUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationAlwaysUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
         "UIBackgroundModes": [
           "location",
           "fetch",
           "processing"
         ]
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyDJYKuO3P5UDAL4DN2o_Y-3U3yibsN0lD4"
       }
     },
     "android": {
@@ -42,7 +46,12 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
-      "package": "com.tracy_app.mobilernapp"
+      "package": "com.tracy_app.mobilernapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyApFNIJSMpOcexQmRCfK55L-IKV7nvK-E8"
+        }
+    }
     },
     "packagerOpts": {
       "config": "metro.config.js",
