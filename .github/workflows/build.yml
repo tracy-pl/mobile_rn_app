@@ -28,4 +28,4 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: 🚀 Build app
-        run: eas build --non-interactive --platform android --profile production
+        run: eas build -p android --profile preview

@@ -20,10 +20,10 @@
     "ios": {
       "supportsTablet": false,
       "infoPlist": {
-        "NSLocationUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
+        "NSLocationUsageDescription": "App requires location even when the App is backgrounded.",
+        "NSLocationWhenInUseUsageDescription": "App requires location even when the App is backgrounded.",
+        "NSLocationAlwaysUsageDescription": "App requires location even when the App is backgrounded.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is backgrounded.",
         "UIBackgroundModes": [
           "location",
           "fetch",
@@ -41,7 +41,8 @@
         "FOREGROUND_SERVICE",
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
-      ]
+      ],
+      "package": "com.tracy_app.mobilernapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -55,6 +56,11 @@
         "ts",
         "tsx"
       ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f50c261-16fd-4704-bdcf-ea06354d0cb3"
+      }
     }
   }
 }
