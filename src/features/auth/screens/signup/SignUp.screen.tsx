@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text } from 'react-native';
 import { useForm } from 'react-hook-form';
-
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Center, ChevronLeftIcon, HStack } from 'native-base';
+
+import { Container } from '~components';
 import { AuthContainer, InputField } from '../../components';
 import {
   getResolver,
@@ -33,7 +33,6 @@ const SignUpScreen: React.FC = () => {
 
   const disabled = useMemo(
     () => !!errors?.email?.message || loading,
-    // eslint-disable-next-line prettier/prettier
     [loading, errors?.email?.message],
   );
 
@@ -42,8 +41,8 @@ const SignUpScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ paddingHorizontal: 12, flex: 2 }}>
+    <Container>
+      <View style={{ paddingHorizontal: 12 }}>
         <Text onPress={() => NavigationService.navigate(ROUTES.LOGIN)}>
           <HStack space={2}>
             <ChevronLeftIcon size="5" mt="0.5" color={colors.blue2} />
@@ -54,7 +53,7 @@ const SignUpScreen: React.FC = () => {
           source={require('../../../../../assets/images/signup-screen-img.png')}
         />
       </View>
-      <View style={{ flex: 3 }}>
+      <View style={{ flex: 1 }}>
         <AuthContainer title="Zarejestruj się ✍️">
           <InputField
             name="email"
@@ -83,7 +82,7 @@ const SignUpScreen: React.FC = () => {
           </Center>
         </AuthContainer>
       </View>
-    </SafeAreaView>
+    </Container>
   );
 };
 
