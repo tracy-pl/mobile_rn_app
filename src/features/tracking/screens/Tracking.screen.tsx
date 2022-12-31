@@ -8,6 +8,7 @@ import useTracking from '../hooks/useTracking';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
 import { S } from './Tracking.styles';
+import { useTimer } from '~features/tracking/hooks/useTimer';
 
 const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
@@ -23,14 +24,20 @@ const TrackingScreen = () => {
     inTracking,
     lastTrackedLocation,
   } = useTracking();
+  const { time, setTimerOn } = useTimer();
+  const hours = `${`${Math.floor((time / 3600000) % 60)}`.slice(-3)}`;
+  const minutes = `${`0${Math.floor((time / 60000) % 60)}`.slice(-2)}`;
+  // const seconds = `${`0${Math.floor((time / 1000) % 60)}`.slice(-2)}`;
 
   const handlePress = () => {
     if (!inTracking) {
+      setTimerOn(true);
       startTracking();
-      NavigationService.navigate(ROUTES.MAIN); // temporary
+      // NavigationService.navigate(ROUTES.MAIN); // temporary
     } else {
+      setTimerOn(true);
       stopTracking();
-      NavigationService.navigate(ROUTES.MAIN); // temporary
+      // NavigationService.navigate(ROUTES.MAIN); // temporary
     }
   };
   const region = useMemo(() => {
@@ -83,7 +90,9 @@ const TrackingScreen = () => {
       <S.Modal>
         <S.TextContainer>
           <S.TopText>Czas śledzenia</S.TopText>
-          <S.BottomText>0:31 min</S.BottomText>
+          <S.BottomText>
+            {hours}:{minutes} min
+          </S.BottomText>
         </S.TextContainer>
         <S.TextContainer>
           <S.TopText>Przebyta trasa</S.TopText>
@@ -95,7 +104,7 @@ const TrackingScreen = () => {
           {inTracking ? 'STOP' : 'Zakońć śledzenie'}
         </S.FinishButton>
       </S.Center>
-      <S.Gradient colors={['rgba(0, 0, 0, 0)', '#000000']} />
+      <S.Gradient colors={['rgba(0, 0, 0, 0)', `${colors.black}`]} />
     </>
   );
 };
