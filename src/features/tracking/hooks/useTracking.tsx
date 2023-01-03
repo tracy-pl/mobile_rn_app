@@ -114,6 +114,7 @@ export default function useTracking() {
       if (!(await isLocationPermissionGranted())) {
         Alert.alert('Location permission is required');
         NavigationService.navigate(ROUTES.SETTINGS);
+        return;
       }
 
       await startLocationUpdates();
