@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import * as Location from 'expo-location';
 import { PermissionResponse } from 'expo-modules-core/src/PermissionsInterface';
 
@@ -18,13 +19,14 @@ export const isLocationPermissionGranted = async (): Promise<boolean> => {
       backgroundPermission = await Location.requestBackgroundPermissionsAsync();
     }
 
-    return (
-      (await Location.isBackgroundLocationAvailableAsync().catch(
-        () => false,
-      )) &&
-      foregroundPermission?.granted &&
-      backgroundPermission?.granted
-    );
+    if (!backgroundPermission.granted) {
+      Alert.alert(
+        'BackgroundPermission',
+        JSON.stringify(backgroundPermission, null, 2),
+      );
+    }
+
+    return foregroundPermission?.granted && backgroundPermission?.granted;
   } catch (error) {
     return false;
   }

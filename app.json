@@ -17,6 +17,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "mode": "background"
+        }
+      ]
+    ],
     "ios": {
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
