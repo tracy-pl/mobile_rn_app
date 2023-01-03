@@ -6,8 +6,9 @@ import { Alert } from 'react-native';
 import { store } from '~redux/store';
 import { useAppSelector, useActions } from '~hooks';
 import { getLatLng } from '~utils/common/location.utils';
-import { trackingActions } from '../redux';
 import { isLocationPermissionGranted } from '~services/location';
+
+import { trackingActions } from '../redux';
 import { NavigationService } from '~services';
 import { ROUTES } from '~constants';
 
@@ -78,6 +79,7 @@ export const startLocationUpdates = async () => {
     });
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
@@ -112,7 +114,10 @@ export default function useTracking() {
   const startTracking = useCallback(async () => {
     try {
       if (!(await isLocationPermissionGranted())) {
-        Alert.alert('Location permission is required');
+        Alert.alert(
+          'Location permission is not granted',
+          'Please enable location permission in settings',
+        );
         NavigationService.navigate(ROUTES.SETTINGS);
         return;
       }

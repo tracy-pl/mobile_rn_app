@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import { View, Text } from 'react-native';
 import styled from 'styled-components/native';
@@ -14,7 +14,7 @@ const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
 
 const PreTrackingScreen = () => {
-  const { startTracking, lastTrackedLocation } = useTracking();
+  const { startTracking, lastTrackedLocation, inTracking } = useTracking();
 
   const region = useMemo(() => {
     if (!lastTrackedLocation) return null;
@@ -29,11 +29,9 @@ const PreTrackingScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastTrackedLocation?.longitude, lastTrackedLocation?.latitude]);
 
-  const handlePress = async () => {
-    await startTracking();
-
-    NavigationService.navigate(ROUTES.TRACKING);
-  };
+  useEffect(() => {
+    if (inTracking) NavigationService.navigate(ROUTES.TRACKING);
+  }, [inTracking]);
 
   const handleExit = () => {
     NavigationService.goBack();
@@ -70,7 +68,7 @@ const PreTrackingScreen = () => {
         </CloseButton>
       </View>
       <Map region={region} />
-      <Button style={{ marginTop: 20 }} onPress={handlePress}>
+      <Button style={{ marginTop: 20 }} onPress={startTracking}>
         Rozpocznij śledzenie
       </Button>
     </Container>
