@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { ColorSchemeName, useColorScheme } from 'react-native';
+import { ColorSchemeName } from 'react-native';
 import { StorageManager, ColorMode, NativeBaseProvider } from 'native-base';
 import { ThemeProvider as SCThemeProvider } from 'styled-components/native';
 
@@ -15,10 +15,10 @@ interface ThemeProviderProps {
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const { setTheme } = useActions();
   const storedScheme = useAppSelector(getTheme);
-  const phoneScheme = useColorScheme() || THEME.LIGHT;
+  // const phoneScheme = useColorScheme() || THEME.LIGHT;
   const currentScheme: ColorSchemeName = useMemo(
-    () => (storedScheme === THEME.DEFAULT ? phoneScheme : storedScheme),
-    [storedScheme, phoneScheme],
+    () => (storedScheme === THEME.DEFAULT ? THEME.LIGHT : storedScheme),
+    [storedScheme],
   );
   const colorModeManager: StorageManager = {
     get: async () => currentScheme,
