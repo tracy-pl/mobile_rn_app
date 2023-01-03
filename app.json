@@ -17,22 +17,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "plugins": [
-      [
-        "expo-location",
-        {
-          "mode": "background"
-        }
-      ]
-    ],
+    "plugins": ["expo-location"],
     "ios": {
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
         "UIBackgroundModes": [
           "location",
-          "fetch",
-          "processing"
+          "fetch"
         ],
         "NSLocationUsageDescription": "App requires location even when the App is in background mode.",
         "NSLocationWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
