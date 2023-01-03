@@ -1,32 +1,29 @@
 import * as Location from 'expo-location';
+import { PermissionResponse } from 'expo-modules-core/src/PermissionsInterface';
 
-const isGranted = (status: string) =>
-  status === Location.PermissionStatus.GRANTED;
-
-const shouldRequestAgain = ({
-  status,
-  canAskAgain,
-}: {
-  status: string;
-  canAskAgain: boolean;
-}) => !isGranted(status) && canAskAgain;
+const shouldRequestAgain = ({ canAskAgain, granted }: PermissionResponse) =>
+  !granted && canAskAgain;
 
 export const isLocationPermissionGranted = async (): Promise<boolean> => {
   try {
-    let [foregroundPermission, backgroundPermission] = await Promise.all([
-      Location.getBackgroundPermissionsAsync().catch(() => null),
-      Location.getForegroundPermissionsAsync().catch(() => null),
-    ]);
+    let foregroundPermission = await Location.getForegroundPermissionsAsync();
 
     if (shouldRequestAgain(foregroundPermission)) {
       foregroundPermission = await Location.requestForegroundPermissionsAsync();
     }
+
+    let backgroundPermission = await Location.getBackgroundPermissionsAsync();
+
     if (shouldRequestAgain(backgroundPermission)) {
       backgroundPermission = await Location.requestBackgroundPermissionsAsync();
     }
 
-    return [foregroundPermission, backgroundPermission].every(
-      p => p && isGranted(p.status),
+    return (
+      (await Location.isBackgroundLocationAvailableAsync().catch(
+        () => false,
+      )) &&
+      foregroundPermission?.granted &&
+      backgroundPermission?.granted
     );
   } catch (error) {
     return false;

@@ -1,11 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import * as TaskManager from 'expo-task-manager';
 import * as Location from 'expo-location';
+import { Alert } from 'react-native';
 
 import { store } from '~redux/store';
 import { useAppSelector, useActions } from '~hooks';
 import { getLatLng } from '~utils/common/location.utils';
 import { trackingActions } from '../redux';
+import { isLocationPermissionGranted } from '~services/location';
+import { NavigationService } from '~services';
+import { ROUTES } from '~constants';
 
 const TASK_FETCH_LOCATION = 'TASK_FETCH_LOCATION';
 
@@ -42,7 +46,11 @@ TaskManager.defineTask(
 
 export const stopLocationUpdates = async () => {
   try {
-    await Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION);
+    Location.hasStartedLocationUpdatesAsync(TASK_FETCH_LOCATION).then(value => {
+      if (value) {
+        Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION);
+      }
+    });
   } catch (err) {
     console.error(err);
   }
@@ -56,7 +64,8 @@ export const startLocationUpdates = async () => {
 
   try {
     await Location.startLocationUpdatesAsync(TASK_FETCH_LOCATION, {
-      accuracy: Location.Accuracy.Highest,
+      accuracy: Location.Accuracy.BestForNavigation,
+      showsBackgroundLocationIndicator: true,
       distanceInterval: 6, // minimum change (in meters) betweens updates
       deferredUpdatesInterval: 2000, // minimum interval (in milliseconds) between updates
       // // foregroundService is how you get the task to be updated as often as would be if the app was open
@@ -102,6 +111,11 @@ export default function useTracking() {
 
   const startTracking = useCallback(async () => {
     try {
+      if (!(await isLocationPermissionGranted())) {
+        Alert.alert('Location permission is required');
+        NavigationService.navigate(ROUTES.SETTINGS);
+      }
+
       await startLocationUpdates();
 
       const hasStarted = await isLocationUpdatesRunning();
