@@ -49,8 +49,8 @@ export default class ErrorBoundary extends React.Component<
     if (hasError) {
       if (IS_DEV_ENV) {
         Alert.alert(error?.message);
-        Alert.alert(errorInfo?.componentStack);
-        Alert.alert(error?.stack);
+
+        if (errorInfo) console.error(errorInfo.componentStack);
       }
 
       return (

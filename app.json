@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "tracy_ts",
+    "name": "tracy",
     "slug": "mobile-rn-app",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icons/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,23 +17,27 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "plugins": ["expo-location"],
     "ios": {
-      "supportsTablet": true,
+      "bundleIdentifier": "com.tracy.mobile-rn-app",
+      "supportsTablet": false,
       "infoPlist": {
-        "NSLocationUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysUsageDescription":"App requires location even when the App is backgrounded.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
         "UIBackgroundModes": [
           "location",
-          "fetch",
-          "processing"
-        ]
+          "fetch"
+        ],
+        "NSLocationUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationAlwaysUsageDescription": "App requires location even when the App is in background mode.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is in background mode."
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyDJYKuO3P5UDAL4DN2o_Y-3U3yibsN0lD4"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "permissions": [
@@ -41,10 +45,13 @@
         "FOREGROUND_SERVICE",
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
-      ]
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      ],
+      "package": "com.tracy_app.mobilernapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyApFNIJSMpOcexQmRCfK55L-IKV7nvK-E8"
+        }
+    }
     },
     "packagerOpts": {
       "config": "metro.config.js",
@@ -55,6 +62,11 @@
         "ts",
         "tsx"
       ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f50c261-16fd-4704-bdcf-ea06354d0cb3"
+      }
     }
   }
 }

@@ -4,7 +4,6 @@ import {
 } from 'react-native-safe-area-context';
 
 import '~utils/ignore';
-// TODO: check this import
 import '~constants';
 
 import RootNavigation from '~routes';

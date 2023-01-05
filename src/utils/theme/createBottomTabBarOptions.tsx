@@ -12,7 +12,7 @@ import {
 
 import { ThemeInterface } from '~theme';
 import { Text } from '~components';
-import { ROUTES } from '~constants';
+import { IS_ANDROID, IS_IOS, ROUTES } from '~constants';
 
 const getNavigationIcon = (color: string): { [key: string]: ReactElement } => {
   return {
@@ -38,18 +38,19 @@ const getNavigationIcon = (color: string): { [key: string]: ReactElement } => {
 const createBottomTabBarOptions =
   (theme: ThemeInterface) =>
   ({ route }: { route: RouteProp<ParamListBase> }) => ({
-    // eslint-disable-next-line react/no-unstable-nested-components
     tabBarIcon: ({ color }: { color: string }) => {
+      const iconMarginTop = IS_IOS ? 4 : 0;
+
       if (route.name === ROUTES.PRE_TRACKING) {
         return (
-          <Circle mt={2} size="45px" bg="#2E9AFF">
+          <Circle mt={iconMarginTop} size="45px" bg={theme.allColors.blue1}>
             <AntDesign name="plus" size={25} color="white" />
           </Circle>
         );
       }
 
       return (
-        <Center mt={2}>
+        <Center mt={iconMarginTop}>
           {getNavigationIcon(color)[route.name]}
           <Text fontSize="xs">{route.name}</Text>
         </Center>
@@ -58,9 +59,10 @@ const createBottomTabBarOptions =
     tabBarShowLabel: false,
     headerShown: false,
     tabBarInactiveTintColor: theme.colors.text,
-    tabBarActiveTintColor: '#2E9AFF',
+    tabBarActiveTintColor: theme.allColors.blue1,
     tabBarStyle: {
       backgroundColor: theme.colors.background,
+      height: IS_ANDROID ? 65 : 75,
     },
   });
 
