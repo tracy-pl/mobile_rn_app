@@ -34,6 +34,6 @@ export const useTrackingTimer = (): string => {
       (countdown / MS_IN_MINUTE) % SECONDS_IN_MINUTE,
     )}`.slice(-2);
 
-    return `${hours}:${minutes}`;
+    return `${hours}:${minutes} min`;
   }, [countdown]);
 };

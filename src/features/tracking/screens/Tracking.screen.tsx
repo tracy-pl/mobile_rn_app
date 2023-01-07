@@ -1,7 +1,10 @@
 import { useMemo, useRef } from 'react';
+
 import MapView, { Polyline } from 'react-native-maps';
 
 import { colors } from '~theme';
+import { ROUTES } from '~constants';
+import { NavigationService } from '~services';
 import { getLatLng } from '~utils/common/location.utils';
 
 import { useTracking } from '../hooks/useTracking';
@@ -20,21 +23,16 @@ const TrackingScreen = () => {
   const mapView = useRef<MapView>();
   const {
     trackingCoordinates,
-    startTracking,
     stopTracking,
     inTracking,
     lastTrackedLocation,
+    totalDistance,
   } = useTracking();
   const trackingTimerLabel = useTrackingTimer();
 
   const handlePress = () => {
-    if (!inTracking) {
-      // startTracking();
-      // NavigationService.navigate(ROUTES.MAIN); // temporary
-    } else {
-      // stopTracking();
-      // NavigationService.navigate(ROUTES.MAIN); // temporary
-    }
+    NavigationService.navigate(ROUTES.MAIN);
+    stopTracking();
   };
   const region = useMemo(() => {
     const { latitude, longitude } = lastTrackedLocation || {};
@@ -45,7 +43,9 @@ const TrackingScreen = () => {
       longitudeDelta,
     };
   }, [lastTrackedLocation]);
-
+  const totalDistanceLabel = useMemo(() => {
+    return `${Math.round(totalDistance * 100) / 100} km`;
+  }, [totalDistance]);
   // TODO: fix point tracking
   // now we recreate region when location updates
   // const onMapReady = useCallback(() => {
@@ -86,11 +86,11 @@ const TrackingScreen = () => {
       <S.Modal>
         <S.TextContainer>
           <S.TopText>Czas śledzenia</S.TopText>
-          <S.BottomText>{trackingTimerLabel} min</S.BottomText>
+          <S.BottomText>{trackingTimerLabel}</S.BottomText>
         </S.TextContainer>
         <S.TextContainer>
           <S.TopText>Przebyta trasa</S.TopText>
-          <S.BottomText>4,0 km</S.BottomText>
+          <S.BottomText>{totalDistanceLabel}</S.BottomText>
         </S.TextContainer>
       </S.Modal>
       <S.Center>
