@@ -3,12 +3,13 @@ import MapView, { Polyline } from 'react-native-maps';
 
 import { colors } from '~theme';
 import { getLatLng } from '~utils/common/location.utils';
+
+import { useTracking } from '../hooks/useTracking';
+import { useTrackingTimer } from '../hooks/useTrackingTimer';
+
 import { Map } from '../components/Map';
-import useTracking from '../hooks/useTracking';
-import { NavigationService } from '~services';
-import { ROUTES } from '~constants';
+
 import { S } from './Tracking.styles';
-import { useTimer } from '~features/tracking/hooks/useTimer';
 
 const latitudeDelta = 0.01;
 const longitudeDelta = 0.01;
@@ -23,11 +24,8 @@ const TrackingScreen = () => {
     stopTracking,
     inTracking,
     lastTrackedLocation,
-    startedAt,
   } = useTracking();
-  const { countdown } = useTimer(startedAt);
-  const hours = `${`${Math.floor((countdown / 3600000) % 60)}`.slice(-3)}`;
-  const minutes = `${`0${Math.floor((countdown / 60000) % 60)}`.slice(-2)}`;
+  const trackingTimerLabel = useTrackingTimer();
 
   const handlePress = () => {
     if (!inTracking) {
@@ -88,9 +86,7 @@ const TrackingScreen = () => {
       <S.Modal>
         <S.TextContainer>
           <S.TopText>Czas śledzenia</S.TopText>
-          <S.BottomText>
-            {hours}:{minutes} min
-          </S.BottomText>
+          <S.BottomText>{trackingTimerLabel} min</S.BottomText>
         </S.TextContainer>
         <S.TextContainer>
           <S.TopText>Przebyta trasa</S.TopText>

@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react';
-
+import { CloseIcon } from 'native-base';
 import { View, Text } from 'react-native';
 import styled from 'styled-components/native';
-import { CloseIcon } from 'native-base';
+
 import { ROUTES } from '~constants';
 import { NavigationService } from '~services';
 import { Button, Container } from '~components';
 
-import useTracking from '../hooks/useTracking';
+import { useTracking } from '../hooks/useTracking';
+
 import { Map } from '../components/Map';
 
 const latitudeDelta = 0.01;
