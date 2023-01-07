@@ -99,7 +99,7 @@ export const getLocation = async () => {
   }
 };
 
-export default function useTracking() {
+export function useTracking() {
   const { setLastTrackedLocation, clearTracking } = useActions();
   const { trackingCoordinates, lastTrackedLocation, totalDistance, startedAt } =
     useAppSelector(state => state.tracking);

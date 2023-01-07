@@ -8,5 +8,6 @@ export namespace S {
     border-width: 1px;
     border-style: solid;
     border-color: rgba(3, 27, 54, 0.1);
+    margin-bottom: 60px;
   `;
 }
