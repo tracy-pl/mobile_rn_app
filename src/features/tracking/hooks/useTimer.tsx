@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-export function useTimer() {
-  const [time, setTime] = useState(0);
+export function useTimer(initialCountdown: Date) {
+  const [countdown, setCountdown] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
 
   useEffect(() => {
@@ -9,13 +9,21 @@ export function useTimer() {
 
     if (timerOn) {
       interval = setInterval(() => {
-        setTime(prev => prev + 1000);
+        setCountdown(prev => prev + 1000);
       }, 1000);
     } else {
-      clearInterval(interval);
+      return clearInterval(interval);
     }
-
     return () => clearInterval(interval);
   }, [timerOn]);
-  return { time, setTimerOn };
+
+  function startTimer() {
+    setTimerOn(true);
+  }
+
+  function stopTimer() {
+    setTimerOn(false);
+  }
+
+  return { countdown, startTimer, stopTimer };
 }

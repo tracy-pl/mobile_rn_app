@@ -23,20 +23,18 @@ const TrackingScreen = () => {
     stopTracking,
     inTracking,
     lastTrackedLocation,
+    startedAt,
   } = useTracking();
-  const { time, setTimerOn } = useTimer();
-  const hours = `${`${Math.floor((time / 3600000) % 60)}`.slice(-3)}`;
-  const minutes = `${`0${Math.floor((time / 60000) % 60)}`.slice(-2)}`;
-  // const seconds = `${`0${Math.floor((time / 1000) % 60)}`.slice(-2)}`;
+  const { countdown } = useTimer(startedAt);
+  const hours = `${`${Math.floor((countdown / 3600000) % 60)}`.slice(-3)}`;
+  const minutes = `${`0${Math.floor((countdown / 60000) % 60)}`.slice(-2)}`;
 
   const handlePress = () => {
     if (!inTracking) {
-      setTimerOn(true);
-      startTracking();
+      // startTracking();
       // NavigationService.navigate(ROUTES.MAIN); // temporary
     } else {
-      setTimerOn(true);
-      stopTracking();
+      // stopTracking();
       // NavigationService.navigate(ROUTES.MAIN); // temporary
     }
   };
