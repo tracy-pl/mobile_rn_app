@@ -16,11 +16,11 @@ import {
   ForgotPasswordScreen,
   SignUpScreen,
 } from '~features/auth/screens';
-import PreTrackingScreen from '~features/tracking/screens/PreTracking.screen';
+import PreTrackingScreen from '~features/tracking/screens/PreTracking/PreTracking.screen';
 
 import { ROUTES, STACKS } from '~constants';
 import { createBottomTabBarOptions } from '~utils/theme';
-import TrackingScreen from '~features/tracking/screens/Tracking.screen';
+import TrackingScreen from '~features/tracking/screens/Tracking/Tracking.screen';
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();
