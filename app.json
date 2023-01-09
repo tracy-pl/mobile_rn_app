@@ -2,7 +2,7 @@
   "expo": {
     "name": "tracy",
     "slug": "mobile-rn-app",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
     "userInterfaceStyle": "automatic",
@@ -22,6 +22,10 @@
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
+        "NSLocationUsageDescription":"App requires location even when the App is backgrounded.",
+        "NSLocationWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
+        "NSLocationAlwaysUsageDescription":"App requires location even when the App is backgrounded.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription":"App requires location even when the App is backgrounded.",
         "UIBackgroundModes": [
           "location",
           "fetch"
