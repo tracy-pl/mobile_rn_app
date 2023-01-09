@@ -22,8 +22,7 @@
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
-        "UIBackgroundModes": ["location", "fetch", "processing"]
+        "UIBackgroundModes": ["location"]
       },
       "config": {
         "googleMapsApiKey": "AIzaSyDJYKuO3P5UDAL4DN2o_Y-3U3yibsN0lD4"
