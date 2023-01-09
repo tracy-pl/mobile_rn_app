@@ -22,7 +22,7 @@
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
-        "UIBackgroundModes": ["location"]
+        "UIBackgroundModes": ["location", "fetch", "processing"]
       },
       "config": {
         "googleMapsApiKey": "AIzaSyDJYKuO3P5UDAL4DN2o_Y-3U3yibsN0lD4"
