@@ -22,13 +22,7 @@
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
       "infoPlist": {
-        "NSLocationUsageDescription": "App requires location even when the App is in background mode.",
-        "NSLocationWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
-        "NSLocationAlwaysUsageDescription": "App requires location even when the App is in background mode.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires location even when the App is in background mode.",
-        "NSLocationTemporaryUsageDescriptionDictionary": {
-          "NSLocationTemporaryUsageDescription": "App requires location even when the App is in background mode."
-        },
         "UIBackgroundModes": ["location", "fetch", "processing"]
       },
       "config": {
