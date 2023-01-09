@@ -2,7 +2,7 @@
   "expo": {
     "name": "tracy",
     "slug": "mobile-rn-app",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
     "userInterfaceStyle": "automatic",
@@ -21,6 +21,12 @@
     "ios": {
       "bundleIdentifier": "com.tracy.mobile-rn-app",
       "supportsTablet": false,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
+      },
       "config": {
         "googleMapsApiKey": "AIzaSyDJYKuO3P5UDAL4DN2o_Y-3U3yibsN0lD4"
       }
