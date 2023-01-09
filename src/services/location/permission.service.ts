@@ -16,11 +16,8 @@ export const isLocationPermissionGranted = async (): Promise<boolean> => {
     if (foregroundPermission.status !== PermissionStatus.GRANTED)
       throw new Error('Foreground permission not granted');
 
-    let backgroundPermission = await Location.getBackgroundPermissionsAsync();
-
-    if (shouldRequestAgain(backgroundPermission)) {
-      backgroundPermission = await Location.requestBackgroundPermissionsAsync();
-    }
+    const backgroundPermission =
+      await Location.requestBackgroundPermissionsAsync();
 
     return foregroundPermission?.granted && backgroundPermission?.granted;
   } catch (error) {
