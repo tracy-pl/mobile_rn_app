@@ -28,3 +28,12 @@ export const Terms = styled.Text`
   color: ${colors.blue1};
   font-weight: 700;
 `;
+
+export const ImageView = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  left: -20px;
+  top: 20px;
+`;
