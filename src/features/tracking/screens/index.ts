@@ -1,2 +1,2 @@
-export * from './Tracking/Tracking.screen';
-export * from './PreTracking/PreTracking.screen';
+export * from './PreTracking';
+export * from './Tracking';
