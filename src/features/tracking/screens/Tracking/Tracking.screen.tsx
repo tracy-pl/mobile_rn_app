@@ -7,10 +7,10 @@ import { ROUTES } from '~constants';
 import { NavigationService } from '~services';
 import { getLatLng } from '~utils/common/location.utils';
 
-import { useTracking } from '../hooks/useTracking';
-import { useTrackingTimer } from '../hooks/useTrackingTimer';
+import { useTracking } from '../../hooks/useTracking';
+import { useTrackingTimer } from '../../hooks/useTrackingTimer';
 
-import { Map } from '../components/Map';
+import { Map } from '../../components/Map';
 
 import { S } from './Tracking.styles';
 
